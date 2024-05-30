@@ -43,6 +43,7 @@
             height: 100px;
             border-radius: 50%;
             margin-bottom: 20px;
+            margin-top: -20px; /* Adjust this value as needed */
         }
 
         .button-label {
@@ -175,27 +176,43 @@
         <a href="zbra://sources/add/dk865.github.io/repo" class="button button-purple">Add Repo to Zebra</a>
         <a href="cydia://url/https://cydia.saurik.com/api/share#?source=https://dk865.github.io/repo/" class="button button-brown-orange">Add Repo to Cydia</a>
     </div>
-    <div class="repo-container" id="repo-container">
+    <div class="repo-container" id="github-container">
         <div class="repo-label">GitHub Projects</div>
-        <p>Loading repositories...</p>
+        <p>Loading GitHub repositories...</p>
+    </div>
+    <div class="repo-container" id="jailbreak-container">
+        <div class="repo-label">Jailbreak Repo</div>
+        <p>Loading Jailbreak repositories...</p>
     </div>
 
     <script>
-        async function fetchRepos() {
-            const response = await fetch('https://api.github.com/users/dk865/repos');
-            const repos = await response.json();
-            const repoContainer = document.getElementById('repo-container');
-            repoContainer.innerHTML = '<div class="repo-label">GitHub Projects</div>'; // Clear the loading text
+    async function fetchRepos() {
+        // Fetch GitHub repositories
+        const githubResponse = await fetch('https://api.github.com/users/dk865/repos');
+        const githubRepos = await githubResponse.json();
+        const githubContainer = document.getElementById('github-container');
+        githubContainer.innerHTML = '<div class="repo-label">GitHub Projects</div>'; // Clear the loading text
 
-            repos.forEach(repo => {
-                const repoElement = document.createElement('div');
-                repoElement.className = 'repo';
-                repoElement.innerHTML = `<a href="${repo.html_url}" target="_blank">${repo.name}</a>`;
-                repoContainer.appendChild(repoElement);
-            });
-        }
+        githubRepos.forEach(repo => {
+            const repoElement = document.createElement('div');
+            repoElement.className = 'repo';
+            repoElement.innerHTML = `<a href="${repo.html_url}" target="_blank">${repo.name}</a>`;
+            githubContainer.appendChild(repoElement);
+        });
 
-        fetchRepos();
-    </script>
-</body>
-</html>
+        // Fetch Jailbreak repositories (replace the URL with your Jailbreak repository URL)
+        const jailbreakResponse = await fetch('YOUR_JAILBREAK_REPO_URL');
+        const jailbreakRepos = await jailbreakResponse.json();
+        const jailbreakContainer = document.getElementById('jailbreak-container');
+        jailbreakContainer.innerHTML = '<div class="repo-label">Jailbreak Repo</div>'; // Clear the loading text
+
+        jailbreakRepos.forEach(repo => {
+            const repoElement = document.createElement('div');
+            repoElement.className = 'repo';
+            repoElement.innerHTML = `<a href="${repo.url}" target="_blank">${repo.name}</a>`;
+            jailbreakContainer.appendChild(repoElement);
+        });
+    }
+
+    fetchRepos();
+</script>
