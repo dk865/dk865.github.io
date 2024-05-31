@@ -1,0 +1,21 @@
+<package>
+    <id>com.dk865.olemacsdpackage</id>
+    <name>Emacs</name>
+    <version>1.0.0</version>
+    <compatibility>
+        <firmware>
+            <miniOS>10.0</miniOS>
+            <maxiOS>17.5</maxiOS>
+            <otherVersions>unconfirmed</otherVersions>
+        </firmware>
+    </compatibility>
+    <dependencies></dependencies>
+    <descriptionlist>
+        <description>This is a modified version of Emacs, made for Rootless. Enjoy this classic, old timer editor, and make sure to speak with it's doctor!</description>
+    </descriptionlist>
+    <screenshots></screenshots>
+    <changelog>
+        <change>Initial release</change>
+    </changelog>
+    <links></links>
+</package>
