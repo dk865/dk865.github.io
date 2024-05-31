@@ -24,10 +24,10 @@
             background: linear-gradient(270deg, #117a62, #12a5b3);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             margin: 0;
             color: #fff;
@@ -42,7 +42,7 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            margin-bottom: 20px;
+            margin-bottom: 0;
             margin-top: -20px; /* Adjust this value as needed */
         }
 
@@ -105,8 +105,6 @@
 
         .repo-container {
             width: 80%;
-            max-height: 600px;
-            overflow-y: auto;
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 10px;
@@ -144,27 +142,6 @@
         .repo a:hover {
             text-decoration: underline;
         }
-
-        /* Custom scrollbar styling */
-        .repo-container::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        .repo-container::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        .repo-container::-webkit-scrollbar-thumb {
-            background: rgba(111, 66, 193, 0.7);
-            border-radius: 10px;
-            border: 3px solid transparent;
-            background-clip: content-box;
-        }
-
-        .repo-container::-webkit-scrollbar-thumb:hover {
-            background: rgba(111, 66, 193, 0.9);
-        }
     </style>
 </head>
 <body>
@@ -201,7 +178,7 @@
         });
 
         // Fetch Jailbreak repositories (replace the URL with your Jailbreak repository URL)
-        const jailbreakResponse = await fetch('YOUR_JAILBREAK_REPO_URL');
+        const jailbreakResponse = await fetch('dk865.github.io');
         const jailbreakRepos = await jailbreakResponse.json();
         const jailbreakContainer = document.getElementById('jailbreak-container');
         jailbreakContainer.innerHTML = '<div class="repo-label">Jailbreak Repo</div>'; // Clear the loading text
@@ -215,4 +192,6 @@
     }
 
     fetchRepos();
-</script>
+    </script>
+</body>
+</html>
