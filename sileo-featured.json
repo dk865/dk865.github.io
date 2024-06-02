@@ -4,9 +4,9 @@
   "itemCornerRadius": 10,
   "banners": [
     {
-        "url": "https://dk865.github.io/repoextras/banners/Emacs.png",
-        "title": "Emacs",
-        "package": "com.dk865.emacs",
+        "url": "https://dk865.github.io/repoextras/banners/moon-buggy.png",
+        "title": "moon-buggy",
+        "package": "com.dk865.moon-buggy",
         "hideShadow": false
     }
   ]

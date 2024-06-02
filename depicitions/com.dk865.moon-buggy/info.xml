@@ -1,0 +1,21 @@
+<package>
+    <id>com.dk865.moon-buggy</id>
+    <name>moon-buggy</name>
+    <version>1.0.51-1</version>
+    <compatibility>
+        <firmware>
+            <miniOS>13.0</miniOS>
+            <maxiOS>17.5</maxiOS>
+            <otherVersions>unconfirmed</otherVersions>
+        </firmware>
+    </compatibility>
+    <dependencies></dependencies>
+    <descriptionlist>
+        <description>Drive a car across the moon in this text-mode videogame moon-buggy is a simple character graphics game where you drive some kind of car across the moon's surface. Unfortunately there are dangerous craters there. Fortunately your car can jump over them!</description>
+    </descriptionlist>
+    <screenshots></screenshots>
+    <changelog>
+        <change>Modified for Rootless</change>
+    </changelog>
+    <links></links>
+</package>
