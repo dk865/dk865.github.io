@@ -7,7 +7,7 @@ async function fetchRepos() {
     githubRepos.forEach(repo => {
         const repoElement = document.createElement('div');
         repoElement.className = 'repo';
-        repoElement.innerHTML = `<a href="${repo.html_url}" target="_blank">${repo.name}</a>`;
+        repoElement.innerHTML = `<a href="${repo.html_url}">${repo.name}</a>`;
         githubContainer.appendChild(repoElement);
     });
 }
@@ -28,8 +28,21 @@ function createConfetti(color) {
     };
 }
 
-
 const buttons = document.querySelectorAll('.button');
+
+function createHoverConfetti(color) {
+    return function(event) {
+        confetti({
+            particleCount: 1,
+            spread: 20,
+            origin: {
+                x: event.clientX / window.innerWidth,
+                y: event.clientY / window.innerHeight
+            },
+            colors: [color]
+        });
+    };
+}
 
 buttons.forEach(button => {
     let color;
@@ -44,6 +57,8 @@ buttons.forEach(button => {
     }
 
     button.addEventListener('click', createConfetti(color));
+    button.addEventListener('mouseover', createHoverConfetti(color));
+
 
     const icon = document.querySelector('.icon');
     let iconTimeout;
@@ -58,10 +73,11 @@ buttons.forEach(button => {
         iconTimeout = setTimeout(() => {
             icon.style.transform = 'rotate(360deg)';
             confetti({
-                particleCount: 10,
+                particleCount: 15,
                 spread: 360,
+                startVelocity: 10,
                 colors: ['#003757', '#005157'],
-                origin: { y: 0.13 }
+                origin: { y: 0.125 }
             });
         }, 100);
     });
