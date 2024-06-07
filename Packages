@@ -22,17 +22,17 @@ Architecture: iphoneos-arm64
 Maintainer: dk865
 Installed-Size: 172
 Depends: libiosexec1 (>= 1.2.2), libncursesw6
-Filename: debs/moon-buggy.deb
-Size: 35412
-MD5sum: 26c302e9efd521b0bcc24b6b1d1caefa
-SHA1: cad80314f000fb0b87fe59cae0ba37568ca6c223
-SHA256: 20bacaf57f863e981814d8bd0f38d1090477deac2785f01d86e9793cd7a9f804
+Filename: debs/moon-buggy_rootless.deb
+Size: 35408
+MD5sum: 7cd693cd1a07addffb5c1b124cad0694
+SHA1: 95dd5431e5879b85338394d8526e2f3b65220f65
+SHA256: 4c93cb742e39b810931d634767663a8c932a416d29e12ee64179e4fb8b514071
 Section: Games
 Priority: optional
 Homepage: https://dk865.github.io/repoextras/htmlinfo/moon-buggy.html
 Description: Drive a car across the moon in this text-mode videogame
  moon-buggy is a simple character graphics game where you drive some kind of car across the moon's surface. Unfortunately there are dangerous craters there. Fortunately your car can jump over them!
-Depicition: https://dk865.github.io/repo/depictions/?p=com.dk865.moon-buggy
+Depicition: https://dk865.github.io/repo/depictions/com.dk865.moon-buggy.html
 Name: moon-buggy
 
 Package: com.dk865.musicreplace
