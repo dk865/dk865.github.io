@@ -1,0 +1,53 @@
+Package: com.dk865.monteal
+Version: 1.0
+Architecture: iphoneos-arm64
+Maintainer: dk865
+Installed-Size: 136
+Depends: mobilesubstrate (>= 0.9.5000)
+Conflicts: com.icraze.screentimebegone
+Filename: debs/monteal.deb
+Size: 2040
+MD5sum: 818be45344ee09892681ecc5c71c8f0b
+SHA1: 27647acdd4c765cddb842d0d1c85d566d52ef2ab
+SHA256: f2656c1e117fca97df25bdc9dc725b605c6c90a2f0fa8a8a661d32519f27c612
+Section: Tweaks
+Description: Downtime: Screen time *Not* is limited until... There is your description of the tweak. If you don't know what that part right there is, then this tweak won't do anything for you.
+Author: dk865
+Depicition: https://dk865.github.io/repoextras/htmldep/monteal.html
+Name: Monteal
+
+Package: com.dk865.moon-buggy
+Version: 1.0.51-1
+Architecture: iphoneos-arm64
+Maintainer: dk865
+Installed-Size: 172
+Depends: libiosexec1 (>= 1.2.2), libncursesw6
+Filename: debs/moon-buggy.deb
+Size: 35412
+MD5sum: 26c302e9efd521b0bcc24b6b1d1caefa
+SHA1: cad80314f000fb0b87fe59cae0ba37568ca6c223
+SHA256: 20bacaf57f863e981814d8bd0f38d1090477deac2785f01d86e9793cd7a9f804
+Section: Games
+Priority: optional
+Homepage: https://dk865.github.io/repoextras/htmlinfo/moon-buggy.html
+Description: Drive a car across the moon in this text-mode videogame
+ moon-buggy is a simple character graphics game where you drive some kind of car across the moon's surface. Unfortunately there are dangerous craters there. Fortunately your car can jump over them!
+Depicition: https://dk865.github.io/repo/depictions/?p=com.dk865.moon-buggy
+Name: moon-buggy
+
+Package: com.dk865.musicreplace
+Version: 1.0
+Architecture: iphoneos-arm
+Maintainer: dk865
+Installed-Size: 172
+Filename: debs/MusicReplace.deb
+Size: 355404
+MD5sum: 90d4d1c5559698acc35a3644f50c4223
+SHA1: f292e7e791f8535294fe0e44845bf3bd02ee2b9d
+SHA256: 12d77fda61f2cfec9dbd4b26a275e688c3b2382d144c0e1092f135aca20d2bae
+Section: User-Requested Fixes
+Priority: optional
+Description: Replace your Music app with a Fresh Copy.
+Depicition: Replace your Music app with a Fresh Copy.
+Name: MusicReplace
+
