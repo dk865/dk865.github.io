@@ -1,0 +1,10 @@
+Package: me.conorthedev.dotto+
+Name: dotto+
+Depends: mobilesubstrate, preferenceloader, firmware (>=13.0), me.conorthedev.libappearancecell, ws.hbang.alderis | org.thebigboss.libcolorpicker
+Architecture: iphoneos-arm64
+Description: Notifications, your style.
+Maintainer: ConorTheDev <conorthedev@gmail.com>
+Author: ConorTheDev & Mirac
+Section: Tweaks
+Version: 1.0.6
+Installed-Size: 592
