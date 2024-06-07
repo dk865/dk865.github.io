@@ -6,12 +6,12 @@ Codename: ios
 Architectures: iphoneos-arm iphoneos-arm64
 Components: main
 Description: This is My Repo. There are various packages, tweaks and programs alike. This repo is famous for my rewriting of Cydia, for rootless. I call it Cynders. Please enjoy, and check out everything!MD5Sum:
- 5a05d3224f4f97d7be95e9401d0abf9e 2024 Packages
- 4611403b04975c78f5c3905e941f07d3 1119 Packages.bz2
- 1a71d5d859ccd23fcd04958efbe321d1 1033 Packages.gz
- 868ce29ecb2a1a33e347c02642d72247 1026 Packages.zst
+ aa65a792ef61ddb867d58021cb549eae 1960 Packages
+ a522b8b33263da70713b30cac5e3487e 1107 Packages.bz2
+ 874d3669d26b84674c9de435b9164741 1017 Packages.gz
+ a21280dd63fb55ce1ae231dc73c1c92a 1012 Packages.zst
 SHA256:
- 20dae8d07fa63fd395ee59c6298af813a9c5d994058903b8e1f582c2801544e5 2024 Packages
- 35b6dc8f54bf1aa1d2c081152f78b40f8af8f2aedee2c522c392f08379166217 1119 Packages.bz2
- 17a9c519bfa64811acf7c14e93ec4909a3766f137d78cf0f5c5a2e13de44aba6 1033 Packages.gz
- 6e0ffb2cac3499d6e90f512bf9258e03875b9a1cd0a97e9e287770094c72090c 1026 Packages.zst
+ 3ea0daae0b1ba14eb02921272d240d9e3cdbc550388407004db8b010d3cd3079 1960 Packages
+ eb69c6e14a6f7fbcfd54cf82d6491ba98565112016ca24c06a447fe842de0497 1107 Packages.bz2
+ 1320aba1eae5fcdee02d9ef3762c9900045bc7ba5e56275c2e1042f09451d524 1017 Packages.gz
+ 8e201a337fc51013f0a2125f272dc6092e9e345a55a05f827337ef8a457088c0 1012 Packages.zst
