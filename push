@@ -40,7 +40,10 @@ echo " $packagesbz2_sha256 $packagesbz2_size" >> Release
 echo " $packagesgz_sha256 $packagesgz_size" >> Release
 echo " $packageszst_sha256 $packageszst_size" >> Release
 
+# Prompt for commit message
+read -p "Enter commit message: " commit_message
+
 # Git commands
 git add .
-git commit -m "Update packages"
-git push origin master
+git commit -m "$commit_message"
+git push origin main
