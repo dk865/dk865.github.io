@@ -1,8 +1,17 @@
-Origin: dk865
-Label: dk865
+Origin: dk865's Repo 
+Label: dk865's Repo
 Suite: stable
 Version: 1.0
 Codename: ios
-Architectures: iphoneos-arm64 iphoneos-arm
+Architectures: iphoneos-arm iphoneos-arm64
 Components: main
-Description: Welcome to the repo of me, dk865. Here, I will publish all of my work... when I have work.
+Description: This is My Repo. There are various packages, tweaks and programs alike. This repo is famous for my rewriting of Cydia, for rootless. I call it Cynders. Please enjoy, and check out everything!MD5Sum:
+  0 Packages
+  14 Packages.bz2
+  29 Packages.gz
+  13 Packages.zst
+SHA256:
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 Packages
+ d3dda84eb03b9738d118eb2be78e246106900493c0ae07819ad60815134a8058 14 Packages.bz2
+ c2ecab9237d473cff53ef7252753bae6d8646716ba8b53e882efa475754b1c18 29 Packages.gz
+ f96deff1816083fdff8bc3e46c3fe6ca46a6bb49f4d5a00627616c13237a512c 13 Packages.zst
