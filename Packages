@@ -1,37 +1,20 @@
-Package: com.dk865.monteal
-Version: 1.0
-Architecture: iphoneos-arm64
-Maintainer: dk865
-Installed-Size: 136
-Depends: mobilesubstrate (>= 0.9.5000)
-Conflicts: com.icraze.screentimebegone
-Filename: debs/monteal.deb
-Size: 2040
-MD5sum: 818be45344ee09892681ecc5c71c8f0b
-SHA1: 27647acdd4c765cddb842d0d1c85d566d52ef2ab
-SHA256: f2656c1e117fca97df25bdc9dc725b605c6c90a2f0fa8a8a661d32519f27c612
-Section: Tweaks
-Description: Downtime: Screen time *Not* is limited until... There is your description of the tweak. If you don't know what that part right there is, then this tweak won't do anything for you.
-Author: dk865
-Depicition: https://dk865.github.io/repoextras/htmldep/monteal.html
-Name: Monteal
-
-Package: com.dk865.moon-buggy
+Package: com.dk865.moon-buggy-rootless
 Version: 1.0.51-1
 Architecture: iphoneos-arm64
 Maintainer: dk865
 Installed-Size: 172
 Depends: libiosexec1 (>= 1.2.2), libncursesw6
 Filename: debs/moon-buggy-rootless.deb
-Size: 35388
-MD5sum: 6cd57660c55e580c929a689c10baa0f5
-SHA1: 4b4ada54a1abe865bfd88c99fba9a7b264931883
-SHA256: c5ce96190903b636e36dcd363a75cab79ddfde017d43b7818a187f6a775d8779
+Size: 35408
+MD5sum: 17f3f27fdb24fa53afd4c4245e24a2ea
+SHA1: 315be86fb7e9869f413beec7eb110088b9b60422
+SHA256: 1583b954a4d65b7a15a1f5bd15f2ec6364154e9e36ba5dc93c3a08e2a485527b
 Section: Games
 Priority: optional
 Description: Drive a car across the moon in this text-mode videogame
  moon-buggy is a simple character graphics game where you drive some kind of car across the moon's surface. Unfortunately there are dangerous craters there. Fortunately your car can jump over them!
-Depicition: https://dk865.github.io/repo/depictions/com.dk865.moon-buggy/index.html
+Depiction: https://dk865.github.io/repo/depictions/moon-buggy/index.html
+Icon: https://dk865.github.io/repoextras/icons/moon-buggy.png
 Name: moon-buggy
 
 Package: com.dk865.musicreplace
