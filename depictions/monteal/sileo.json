@@ -1,0 +1,102 @@
+{
+    "minVersion": "0.1",
+    "class": "DepictionTabView",
+    "headerImage": "https://dk865.github.io/depictions/moon-buggy/banner.png",
+    "tintColor": "#001c2c",
+    "tabs": [
+        {
+            "class": "DepictionStackView",
+            "tabname": "Details",
+            "views": [
+                {
+                    "title": "Drive a car across the moon in this text-mode videogame",
+                    "useBoldText": true,
+                    "useBottomMargin": false,
+                    "class": "DepictionSubheaderView"
+                },
+                {
+                    "markdown": "![Icon](https://dk865.github.io/repoextras/icons/moon-buggy.png)\n\n# moon-buggy\n\nDrive a car across the moon in this text-mode video game. Moon-buggy is a simple character graphics game where you drive some kind of car across the moon's surface. Fortunately, your car can jump over dangerous craters!\n\n## Features\n- Text-mode graphics\n- Simple, yet addictive gameplay\n\n## Instructions\nYou need a terminal installed. To run, just type `moon-buggy`.\n\n## Dependencies\n- libiosexec1 (>= 1.2.2)\n- libncursesw6",
+                    "useSpacing": true,
+                    "class": "DepictionMarkdownView"
+                },
+                {
+                    "class": "DepictionSeparatorView"
+                },
+                {
+                    "title": "Additional Information",
+                    "class": "DepictionHeaderView"
+                },
+                {
+                    "title": "Supported Architectures",
+                    "text": "iOS & Rootless iOS",
+                    "class": "DepictionTableTextView"
+                },
+                {
+                    "title": "Supported Versions",
+                    "text": "All, just untested.",
+                    "class": "DepictionTableTextView"
+                },
+                {
+                    "title": "Developer",
+                    "text": "dk865",
+                    "class": "DepictionTableTextView"
+                },
+                {
+                    "title": "Package Name",
+                    "text": "moon-buggy",
+                    "class": "DepictionTableTextView"
+                },
+                {
+                    "class": "DepictionSeparatorView"
+                },
+                {
+                    "title": "Latest Version",
+                    "class": "DepictionHeaderView"
+                },
+                {
+                    "title": "Version",
+                    "text": "1.0.51-1",
+                    "class": "DepictionTableTextView"
+                },
+                {
+                    "title": "Price",
+                    "text": "Free",
+                    "class": "DepictionTableTextView"
+                },
+                {
+                    "class": "DepictionSeparatorView"
+                },
+                {
+                    "title": "Contact Support",
+                    "action": "depiction-https://dk865.github.io",
+                    "class": "DepictionTableButtonView"
+                },
+                {
+                    "spacing": 16,
+                    "class": "DepictionSpacerView"
+                }
+            ]
+        },
+        {
+            "class": "DepictionStackView",
+            "tabname": "Changes",
+            "views": [
+                {
+                    "title": "Version 1.0.51-1",
+                    "useBoldText": true,
+                    "useBottomMargin": true,
+                    "class": "DepictionSubheaderView"
+                },
+                {
+                    "markdown": "Initial release of moon-buggy",
+                    "useSpacing": false,
+                    "class": "DepictionMarkdownView"
+                },
+                {
+                    "spacing": 20,
+                    "class": "DepictionSpacerView"
+                }
+            ]
+        }
+    ]
+}

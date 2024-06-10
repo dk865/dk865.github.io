@@ -3,6 +3,6 @@ Label: dk865's Repo
 Suite: stable
 Version: 1.0
 Codename: ios
-Architectures: iphoneos-arm iphoneos-arm64
+Architectures: iphoneos-arm iphoneos-arm64 iphoneos-arm64e
 Components: main
-Description: This is My Repo. There are various packages, tweaks and programs alike. This repo is famous for my rewriting of Cydia, for rootless. I call it Cynders. Please enjoy, and check out everything!
+Description: This is My Repo. There are various packages, tweaks and programs alike. This repo is pretty empty, but great things are to come!

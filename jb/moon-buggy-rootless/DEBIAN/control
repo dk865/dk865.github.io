@@ -1,4 +1,4 @@
-Package: com.dk865.moon-buggy-rootless
+Package: com.dk865.moon-buggy
 Priority: optional
 Section: Games
 Maintainer: dk865
@@ -8,6 +8,7 @@ Depends: libiosexec1 (>= 1.2.2), libncursesw6
 Name: moon-buggy
 Description: Drive a car across the moon in this text-mode videogame
  moon-buggy is a simple character graphics game where you drive some kind of car across the moon's surface. Unfortunately there are dangerous craters there. Fortunately your car can jump over them! 
-Depiction: https://dk865.github.io/depictions/moon-buggy/index.html
-Icon: https://dk865.github.io/repoextras/icons/moon-buggy.png
+Depiction: https://dk865.github.io/depictions/moon-buggy/
+SileoDepiction: https://dk865.github.io/depictions/moon-buggy/sileo.json
+Icon: https://dk865.github.io/depictions/moon-buggy/icon.png
 Installed-Size: 172

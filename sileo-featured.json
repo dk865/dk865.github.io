@@ -7,14 +7,7 @@
         "url": "https://dk865.github.io/repoextras/banners/moon-buggy.png",
         "title": "moon-buggy",
         "package": "com.dk865.moon-buggy",
-        "hideShadow": false
-    },
-
-    {
-      "url": "https://dk865.github.io/repoextras/banners/monteal.png",
-      "title": "Monteal",
-      "package": "com.dk865.monteal",
-      "hideShadow": false
-  }
+        "hideShadow": true
+    }
   ]
 }

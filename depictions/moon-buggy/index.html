@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dk865</title>
+    <title>moon-buggy</title>
     <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
     <style>
         body {
@@ -31,11 +31,6 @@
         .package {
             font-size: 1.2em;
             margin-bottom: 20px;
-        }
-
-        .welcome {
-            font-size: 1.5em;
-            margin-bottom: 5px;
         }
 
         .about p {
@@ -70,6 +65,16 @@
             text-decoration: none;
         }
 
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li::before {
+            content: "• ";
+            color: #f39c12;
+        }
+
         @keyframes fadeIn {
             to {
                 opacity: 1;
@@ -78,19 +83,20 @@
     </style>
 </head>
 <body>
-    <img src="./image.png" alt="Icon" class="icon">
+    <img src="./icon.png" alt="Icon" class="icon">
     <h1>moon-buggy</h1>
     <div class="package">This is a Console Package!</div>
-    <div class="welcome">Welcome to moon-buggy!</div>
     <div class="about">
         <p>Drive a car across the moon in this text-mode video game. Moon-buggy is a simple character graphics game where you drive some kind of car across the moon's surface. Fortunately, your car can jump over dangerous craters!</p>
     </div>
     <div class="line"></div>
     <div class="info">
-        <div class="aboutme">Supported Architectures: iOS & Rootless iOS</div>
-        <div class="aboutme">Supported Versions: All, just untested.</div>
-        <div class="aboutme">Instructions: You need a terminal installed. To run, just type "moon-buggy"</div>
-        <div class="aboutme">Dependencies: libiosexec1 (>= 1.2.2), libncursesw6</div>
+        <ul>
+            <li>Supported Architectures: iOS & Rootless iOS</li>
+            <li>Supported Versions: All, just untested.</li>
+            <li>Instructions: You need a terminal installed. To run, just type "moon-buggy".</li>
+            <li>Dependencies: libiosexec1 (>= 1.2.2), libncursesw6</li>
+        </ul>
     </div>
     <p class="footer"><a href="https://dk865.github.io" class="footer-link">dk865's Repo</a></p>
 
