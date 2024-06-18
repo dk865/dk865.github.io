@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rustful YouTube Downloader</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Rustful YouTube Downloader</h1>
+    <p class="by-dk865">by dk865</p>
+    
+    <div class="form-container">
+        <form id="downloadForm" action="/download" method="POST">
+            <input type="text" id="urlInput" name="url" placeholder="Enter YouTube URL" class="input-field" required>
+            <select id="formatSelect" name="format" class="dropdown" required>
+                <option value="" disabled selected>Select Format</option>
+                <option value="m4a">M4A</option>
+                <option value="mp4">MP4</option>
+            </select>
+            <button id="downloadButton" class="button button-blue" type="submit">Download</button>
+        </form>
+    </div>
+
+    <div id="disclaimer" class="disclaimer">
+        <p>DISCLAIMER:</p>
+        <p>This YouTube downloader application is provided for educational and personal use only. It is intended to allow users to download videos for which they have the necessary rights or permissions, such as videos available under Creative Commons licenses or videos for which they have obtained explicit permission from the copyright holder.</p>
+        <p>Users are solely responsible for ensuring that their use of this application complies with all applicable laws and regulations, including copyright laws. The developers of this application do not endorse or encourage the downloading of copyrighted materials without proper authorization. It is illegal to download copyrighted videos without permission from the copyright holder.</p>
+        <p>By using this application, you agree to use it responsibly and legally, and you acknowledge that any misuse of the application may result in legal consequences. The developers of this application shall not be held liable for any unauthorized or illegal use of the application.</p>
+        <p>Please use this application responsibly and respect the rights of content creators and copyright holders.</p>
+    </div>
+</body>
+</html>

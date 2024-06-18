@@ -4,8 +4,16 @@
     100% { background-position: 0% 50%; }
 }
 
+@font-face {
+  font-family: 'Carter One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/CarterOne-Regular.woff2') format('woff2');
+}
+
 body {
-    font-family: 'Carter One', cursive;
+    font-family: 'Carter One', sans-serif;
     text-align: center;
     background-color: #001c2c;
     background-size: 400% 400%;
@@ -26,10 +34,11 @@ body::-webkit-scrollbar {
 
 h1 {
     font-size: 4em;
-    margin: -10px 0 10px 0;
+    margin: -10px 0 -10px 0;
     opacity: 0;
     transform: translateY(-20px);
     animation: fadeIn 1s ease forwards 0.5s;
+
 }
 
 @keyframes fadeIn {
@@ -56,36 +65,7 @@ h1 {
     }
 }
 
-.top-bar {
-    background-color: #001c2c;
-    width: 100%;
-    padding: 10px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    z-index: 1000;
-    opacity: 0;
-    transform: translateY(-50px);
-    animation: fadeInDown 1s ease forwards;
-}
-
-.top-bar a {
-    color: white;
-    margin: 0 20px;
-    text-decoration: none;
-    font-size: 1.2em;
-}
-
-@keyframes fadeInDown {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.welcome, .aboutme1, .aboutme2, .altoption {
+.welcome, .aboutme1, .aboutme2, .altoption, .quote {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 1s ease forwards;
@@ -109,8 +89,8 @@ h1 {
     animation-delay: 1.2s, 1.4s;
 }
 
-.aboutme1 { margin-bottom: -10px; }
-.aboutme2 { margin-bottom: 10px; }
+.aboutme1 { margin-bottom: 10px; }
+.aboutme2 { margin-bottom: 20px; }
 
 .altoption {
     font-size: 1.25em;
@@ -139,41 +119,41 @@ h1 {
     transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.button1 {
+.button-blue {
     background: linear-gradient(45deg, #2582fc 0%, #00d9ff 100%);
 }
 
-.button1:hover {
+.button-blue:hover {
     transform: scale(1.05);
     background-color: #009eb3;
     box-shadow: 0 0 50px rgba(0, 204, 255, 0.7);
 }
 
-.button2 {
+.button-purple {
     background: linear-gradient(45deg, #8400ff 0%, #b64bfd 100%);
 }
 
-.button2:hover {
+.button-purple:hover {
     transform: scale(1.05);
     background-color: #563d7c;
     box-shadow: 0 0 50px rgba(111, 66, 193, 0.7);
 }
 
-.button3 {
+.button-red {
     background: linear-gradient(45deg, #ff0000 0%, #ff9d4e 100%);
 }
 
-.button3:hover {
+.button-red:hover {
     transform: scale(1.05);
     background-color: #7c3d3d;
     box-shadow: 0 0 50px rgba(193, 66, 66, 0.7);
 }
 
-.button4 {
+.button-brown-orange {
     background: linear-gradient(45deg, #c56f1f 0%, #ffc400 100%);
 }
 
-.button4:hover {
+.button-brown-orange:hover {
     background-color: #a0522d;
     transform: scale(1.05);
     box-shadow: 0 0 50px rgba(210, 105, 30, 0.7);
@@ -209,4 +189,21 @@ h1 {
     background: rgba(0, 0, 0, 0.5);
     padding: 10px;
     border-radius: 5px;
-    transition: transform 0.3s ease, background-colo
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.repo:hover {
+    transform: translateX(10px);
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.repo a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.repo a:hover {
+    text-decoration: underline;
+}

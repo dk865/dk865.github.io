@@ -88,3 +88,47 @@ buttons.forEach(button => {
     });
     
 });
+
+// Array of quotes
+const quotes = [
+    "[Announcer] Caroline Deleted.",
+    "Womp Womp",
+    "The best time to wear a striped sweater, is all the time.",
+    "I am NOT a MORON!",
+    "Ba duh duh duh-duh duh duh circus duh duh duh duh-duh duh duh afro...",
+    "This was a triumph.",
+    "The cake is a lie.",
+    "You will be baked, and then there will be cake.",
+    "I don't blame you.",
+    "Marley was dead to begin with...",
+    "Ruh-Roh Raggy!",
+    "*Clap* [3 Second Pause] *Clap* [3 Second Pause] *Clap*",
+    "Target Lost.",
+    "I 'C' a 'Python', 'Swift'ly get it out of here!!!",
+    "SPAAAAAAAAAACEEEEE",
+    "Shoot the moon kid!",
+    "I'm CrInGiNg!",
+    "Pork. Sausage. Bacon. Ms. Piggy. SCRAPPLE!!!",
+    "Who even is Jon Doe?",
+    "Settings -> General -> About (take a screenshot and send it to me)",
+    "A light bulb was such a good idea it became the symbol for a good idea...",
+    "import tkinter as tk",
+    "from tkinter import tkk",
+    "If only Xcode was available for Windows 7... or iOS... or any OS that's not Mac...",
+    "Why doesn't Python3 support Windows XP?",
+    "If only WSL worked on Windows 7..."
+];
+
+// Function to display a random quote with animation
+function displayRandomQuote() {
+    const quoteElement = document.getElementById('quote');
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    quoteElement.classList.remove('visible');
+    setTimeout(() => {
+        quoteElement.innerText = quotes[randomIndex];
+        quoteElement.classList.add('visible');
+    }, 0); // Delay to allow for the opacity transition
+}
+
+// Call the function to display a random quote when the page loads
+displayRandomQuote();

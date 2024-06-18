@@ -1,0 +1,47 @@
+body {
+    font-family: 'Carter One', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 20px 0 10px 0;
+}
+
+.by-dk865 {
+    margin: 0 0 20px 0;
+}
+
+#visualizer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 50%;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.visual-element {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    background-color: #1e1e1e;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    transition: transform 0.1s, background-color 0.1s;
+}
+
+.active {
+    transform: scale(1.5);
+    background-color: #ff0000;
+}

@@ -4,45 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dk865</title>
-    <link href="https://fonts.googleapis.com/css?family=Carter+One" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/jpeg" href="./icon.jpeg"> <!-- Updated favicon -->
-    <script src="https://cdn.jsdelivr.net/npm/confetti-js"></script>
+    <link rel="icon" type="image/jpeg" href="./icon.jpeg">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-    <div class="top-bar">
-        <a href="#">Home</a>
-        <a href="https://dk865.github.io/plans">Plans</a>
-        <a href="https://dk865.github.io/contact">Contact</a>
-    </div>
     <img src="./icon.jpeg" alt="Icon" class="icon">
     <h1>dk865</h1>
-    <div class="welcome">Welcome to my LAIR!</div>
+    <div id="quote" class="quote">The... Quote is a lie... (failed, is JavaScript on?)</div>
+    <div class="welcome">Welcome, to my LAIR!</div>
     <div class="about-section">
-        <div class="aboutme1">I'm dk865, and lo>
-        <div class="aboutme1">I make Construct >
-        <div class="aboutme2">Please enjoy, and>
+        <div class="aboutme1">I'm dk865, a very normal developer.</div>
+        <div class="aboutme1">The skills I have are Swift, Python, Shell, Batch, and Construct.</div>
     </div>
     <div class="button-container">
-        <a href="sileo://source/https://dk865.g">Sileo</a>
-        <a href="zbra://sources/add/dk865.githu">Zebra</a>
-        <a href="installer://add/https://dk865.">Installer</a>
-        <a href="cydia://url/https://cydia.saur">Cydia</a>
+        <a href="sileo://source/https://dk865.github.io/" class="button button-blue">Sileo</a>
+        <a href="zbra://sources/add/dk865.github.io/" class="button button-purple">Zebra</a>
+        <a href="installer://add/https://dk865.github.io" class="button button-red">Installer</a>
+        <a href="cydia://url/https://cydia.saurik.com/api/share#?source=https://dk865.github.io/" class="button button-brown-orange">Cydia</a>
     </div>
-    <div class="altoption">Or, just Copy & Paste</div>
+
+    <div class="altoption">⬆️ JB Repo ⬆️</div>
+    <div class="repo-container" id="features">
+        <div class="repo-label">Featured</div>
+        <div class="repo">
+            <a href="https://dk865.github.io/rustless-yt">Rustless Youtube Downloader (VERY BETA!)</a>
+        </div>
+    </div>
+
     <div class="repo-container" id="github-container">
         <div class="repo-label">GitHub Projects</div>
         <p>Loading GitHub Repositories...</p>
     </div>
+
     <div class="repo-container" id="construct">
         <div class="repo-label">Construct Projects</div>
         <div class="repo">
-            <a href="https://www.construct.net/">Project 1</a>
+            <a href="https://www.construct.net/en/free-online-games/planet-clicker-62046/play">Planet Clicker</a>
         </div>
         <div class="repo">
-            <a href="https://www.construct.net/">Project 2</a>
+            <a href="https://www.construct.net/en/free-online-games/rewind-62741/play">Rewind</a>
+        </div>
+        <div class="repo">
+            <a href="https://www.construct.net/en/free-online-games/pin-it-63909/play">Pin It</a>
+        </div>
+        <div class="repo">
+            <a href="https://www.construct.net/en/free-online-games/rick-roll-timer-v2-62809/play">Rick Roll Timer V2</a>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <div class="repo-container" id="contact">
+        <div class="repo-label">Contact Me</div>
+        <div class="repo">
+            <a href="mailto:dkolb2056@icloud.com">Email (support ONLY)</a>
+        </div>
+        <div class="repo">
+            <a href="https://dk865.github.io/debs/monteal.deb">GitHub Issues for Requests</a>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
 </body>
 </html>
