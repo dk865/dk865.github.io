@@ -13,19 +13,25 @@
 }
 
 body {
-    font-family: 'Carter One', sans-serif;
-    text-align: center;
-    background-color: #001c2c;
-    background-size: 400% 400%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0;
-    color: #fff;
-    overflow-y: scroll;
-    scrollbar-width: none; /* For Firefox */
+  font-family: 'Carter One', sans-serif;
+  text-align: center;
+  background-color: #001c2c;
+  background-size: 400% 400%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  color: #fff;
+  overflow-y: scroll;
+  scrollbar-width: none; /* For Firefox */
+}
+
+.carter-one-regular {
+  font-family: 'Carter One', system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
 
 body::-webkit-scrollbar {
