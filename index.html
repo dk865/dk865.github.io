@@ -17,6 +17,7 @@
         <div class="aboutme1">I'm dk865, a very normal developer.</div>
         <div class="aboutme1">The skills I have are Swift, Python, Shell, Batch, and Construct.</div>
     </div>
+    
     <div class="button-container">
         <a href="sileo://source/https://dk865.github.io/" class="button button-blue">Sileo</a>
         <a href="zbra://sources/add/dk865.github.io/" class="button button-purple">Zebra</a>
@@ -24,7 +25,16 @@
         <a href="cydia://url/https://cydia.saurik.com/api/share#?source=https://dk865.github.io/" class="button button-brown-orange">Cydia</a>
     </div>
 
-    <div class="altoption">⬆️ JB Repo ⬆️</div>
+    <div class="altoption" id="alt-option">(Package Manager Buttons, ignore if you don't know what they are)</div>
+
+    <div id="linux-repo" class="repo-container">
+        <div class="repo-label">Add Repo to apt:</div>
+        <div class="repo-command">
+            <code>sudo sh -c 'echo "deb [trusted=yes] https://dk865.github.io/ ./" > /etc/apt/sources.list.d/dk865.list'</code>
+            <button class="copy-button">Copy</button>
+        </div>
+    </div>
+
     <div class="repo-container" id="features">
         <div class="repo-label">Featured</div>
         <div class="repo">

@@ -44,7 +44,6 @@ h1 {
     opacity: 0;
     transform: translateY(-20px);
     animation: fadeIn 1s ease forwards 0.5s;
-
 }
 
 @keyframes fadeIn {
@@ -212,4 +211,59 @@ h1 {
 
 .repo a:hover {
     text-decoration: underline;
+}
+
+/* New styles for Linux repo box */
+#linux-repo {
+    display: none;
+    background: #000;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    margin: 20px auto;
+    color: #fff;
+    font-family: monospace;
+    position: relative;
+    animation: fadeInUp 1s ease forwards 2s;
+}
+
+#linux-repo .repo-label {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#linux-repo .repo-command {
+    background: #222;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#linux-repo .repo-command code {
+    font-family: monospace;
+    font-size: 1em;
+    color: #00ff00;
+}
+
+#linux-repo .copy-button {
+    background: #555;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+#linux-repo .copy-button:hover {
+    background: #777;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

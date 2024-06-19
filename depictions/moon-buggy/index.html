@@ -3,109 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>moon-buggy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Carter One', cursive;
-            text-align: center;
-            background-color: #001c2c;
-            color: #fff;
-            margin: 0;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards;
-        }
-
-        .icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 10%;
-            margin: 50px 0 20px 0;
-        }
-
-        h1 {
-            font-size: 3em;
-            margin: 0;
-        }
-
-        .package {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-
-        .about p {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .info {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .line {
-            border-top: 1px solid #fff;
-            margin: 20px auto;
-            width: 50%;
-        }
-
-        .footer {
-            font-size: 1em;
-            margin-top: 20px;
-            background-color: #001c2c;
-            padding: 10px;
-        }
-
-        .footer-link {
-            color: #fff;
-            text-decoration: underline;
-        }
-
-        .footer-link:hover {
-            text-decoration: none;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        ul li::before {
-            content: "• ";
-            color: #f39c12;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-    </style>
+    <title>dk865</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/jpeg" href="./icon.jpeg">
 </head>
 <body>
-    <img src="./icon.png" alt="Icon" class="icon">
+    <img src="/icon.jpeg" alt="Icon" class="icon">
     <h1>moon-buggy</h1>
-    <div class="package">This is a Console Package!</div>
-    <div class="about">
-        <p>Drive a car across the moon in this text-mode video game. Moon-buggy is a simple character graphics game where you drive some kind of car across the moon's surface. Fortunately, your car can jump over dangerous craters!</p>
+    <div class="welcome">This is a Console Package!</div>
+    <div class="about-section">
+        <div class="aboutme1">Drive a car across the moon in this text based videogame</div>
     </div>
-    <div class="line"></div>
-    <div class="info">
-        <ul>
-            <li>Supported Architectures: iOS & Rootless iOS</li>
-            <li>Supported Versions: All, just untested.</li>
-            <li>Instructions: You need a terminal installed. To run, just type "moon-buggy".</li>
-            <li>Dependencies: libiosexec1 (>= 1.2.2), libncursesw6</li>
-        </ul>
-    </div>
-    <p class="footer"><a href="https://dk865.github.io" class="footer-link">dk865's Repo</a></p>
-
-    <!-- Animation -->
-    <script>
-        document.body.style.opacity = 0;
-        setTimeout(function(){
-            document.body.style.opacity = 1;
-        }, 100);
-    </script>
+    <script src="/script.js"></script>
 </body>
 </html>

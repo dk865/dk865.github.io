@@ -18,6 +18,26 @@ Icon: https://dk865.github.io/depictions/moon-buggy/icon.png
 Name: moon-buggy
 Sileodepiction: https://dk865.github.io/depictions/moon-buggy/sileo.json
 
+Package: com.dk865.moon-buggy
+Version: 1.0.51-1
+Architecture: iphoneos-arm
+Maintainer: dk865
+Installed-Size: 172
+Depends: libiosexec1 (>= 1.2.2), libncursesw6
+Filename: debs/moon-buggy-rootful.deb
+Size: 35292
+MD5sum: 7f504307e00de17698699dce071b3bf6
+SHA1: d834d9c56df2b016002ad04518d23e66e47077d1
+SHA256: 63324d7efdf4f266d6dad91be219b45d88a2fb7fea210de85eed188d7f743463
+Section: Games
+Priority: optional
+Description: Drive a car across the moon in this text-mode videogame
+ moon-buggy is a simple character graphics game where you drive some kind of car across the moon's surface. Unfortunately there are dangerous craters there. Fortunately your car can jump over them!
+Depiction: https://dk865.github.io/depictions/moon-buggy/
+Icon: https://dk865.github.io/depictions/moon-buggy/icon.png
+Name: moon-buggy
+Sileodepiction: https://dk865.github.io/depictions/moon-buggy/sileo.json
+
 Package: com.dk865.musicreplace
 Version: 1.0
 Architecture: iphoneos-arm

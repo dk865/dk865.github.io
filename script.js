@@ -1,3 +1,95 @@
+// Platform detection and element visibility
+document.addEventListener('DOMContentLoaded', function () {
+    let currentPlatform = detectPlatform();
+    updateUI(currentPlatform);
+});
+
+function detectPlatform() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    if (userAgent.indexOf('Linux') > -1) return 'Linux';
+    if (userAgent.indexOf('Android') > -1) return 'Android';
+    if (userAgent.indexOf('Windows') > -1) return 'Windows';
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) return 'iOS';
+    return 'Unknown';
+}
+
+function updateUI(platform) {
+    const repoButtons = document.getElementById('repo-buttons');
+    const linuxRepo = document.getElementById('linux-repo');
+    const packageManagerText = document.getElementById('package-manager-text');
+
+    if (platform === 'Linux') {
+        repoButtons.style.display = 'none';
+        linuxRepo.style.display = 'block';
+        packageManagerText.style.display = 'none';
+    } else if (platform === 'iOS') {
+        repoButtons.style.display = 'flex';
+        linuxRepo.style.display = 'none';
+        packageManagerText.style.display = 'block';
+    } else if (platform === 'Windows' || platform === 'Android') {
+        repoButtons.style.display = 'none';
+        linuxRepo.style.display = 'none';
+        packageManagerText.style.display = 'none';
+    }
+}
+
+// Quotes that will be randomly selected upon loading
+const quotes = [
+    "[Announcer] Caroline Deleted.",
+    "Womp Womp",
+    "The best time to wear a striped sweater, is all the time.",
+    "I am NOT a MORON!",
+    "Ba duh duh duh-duh duh duh circus duh duh duh duh-duh duh duh afro...",
+    "This was a triumph.",
+    "The cake is a lie.",
+    "You will be baked, and then there will be cake.",
+    "I don't blame you.",
+    "Marley was dead to begin with...",
+    "Ruh-Roh Raggy!",
+    "*Clap* [3 Second Pause] *Clap* [3 Second Pause] *Clap*",
+    "Target Lost.",
+    "SPAAAAAAAAAACEEEEE",
+    "Shoot the moon kid!",
+    "I'm CrInGiNg!",
+    "Pork. Sausage. Bacon. SCRAPPLE!!!",
+    "Who even is Jon Doe?",
+    "A light bulb was such a good idea it became the symbol for a good idea...",
+    "import tkinter as tk",
+    "from tkinter import tkk",
+    "If only Xcode was available for Windows 7... or iOS... or any OS that's not Mac...",
+    "Why doesn't Python3 support Windows XP?",
+    "If only WSL worked on Windows 7...",
+    "Duh Duh Duh, duh duh duh Duh Duh Duh...",
+    "CEREAL!!!",
+    "Oatmeal?",
+    "Because I'M a POTATO!!!",
+    "[Insert Random Quote Here]",
+    "[Subject Name Here]",
+    "Oh, hi O!",
+    "Synthesia needs more particle effects.",
+    "Why can't all the (jb) tweaks be free?",
+    "The satisfaction when you win a giveaway",
+    "X > 31.244",
+    "Yet another day and I still haven't used 'y = mx + b' (:",
+    "Something I need to do > Something I want to do",
+    "Just do it",
+    "We do what we must, because we can",
+    "For the good of all of us. Except the ones who are dead.",
+    "But there's no sense crying over every mistake, you just keep on trying till you run out of cake.",
+    "You keep on trying till you run out of cake...",
+    "Man, I LOVE this game!",
+    "Thanks to you, I think I've been well-prepared. As far as heroes go, I'd say you're not too bad.",
+    "Yay!",
+    "Hey, remember when you tried to kill me twice?",
+    "Oh, how we laughed and laughed...",
+    "Do you have an alibi?",
+    "That's still unconfirmed. Investigations pending, but..."
+];
+
+const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+document.getElementById('quote').innerText = randomQuote;
+
+// Fetch GitHub Repos
 async function fetchRepos() {
     const githubResponse = await fetch('https://api.github.com/users/dk865/repos');
     const githubRepos = await githubResponse.json();
@@ -14,8 +106,9 @@ async function fetchRepos() {
 
 fetchRepos();
 
+// Create confetti on button click
 function createConfetti(color) {
-    return function(event) {
+    return function (event) {
         confetti({
             particleCount: 15,
             spread: 70,
@@ -29,20 +122,6 @@ function createConfetti(color) {
 }
 
 const buttons = document.querySelectorAll('.button');
-
-function createHoverConfetti(color) {
-    return function(event) {
-        confetti({
-            particleCount: 1,
-            spread: 20,
-            origin: {
-                x: event.clientX / window.innerWidth,
-                y: event.clientY / window.innerHeight
-            },
-            colors: [color]
-        });
-    };
-}
 
 buttons.forEach(button => {
     let color;
@@ -58,77 +137,20 @@ buttons.forEach(button => {
 
     button.addEventListener('click', createConfetti(color));
     button.addEventListener('mouseover', createHoverConfetti(color));
-
-
-    const icon = document.querySelector('.icon');
-    let iconTimeout;
-    
-    icon.addEventListener('mousedown', () => {
-        icon.style.transform = 'scale(0.95) translateY(5px)';
-    });
-    
-    icon.addEventListener('mouseup', () => {
-        icon.style.transform = 'scale(1) translateY(0) rotate(0)';
-        icon.style.transition = 'transform 0.5s ease';
-        iconTimeout = setTimeout(() => {
-            icon.style.transform = 'rotate(360deg)';
-            confetti({
-                particleCount: 15,
-                spread: 360,
-                startVelocity: 10,
-                colors: ['#003757', '#005157'],
-                origin: { y: 0.125 }
-            });
-        }, 100);
-    });
-    
-    icon.addEventListener('mouseleave', () => {
-        icon.style.transform = 'scale(1) translateY(0)';
-        clearTimeout(iconTimeout);
-    });
-    
 });
 
-// Array of quotes
-const quotes = [
-    "[Announcer] Caroline Deleted.",
-    "Womp Womp",
-    "The best time to wear a striped sweater, is all the time.",
-    "I am NOT a MORON!",
-    "Ba duh duh duh-duh duh duh circus duh duh duh duh-duh duh duh afro...",
-    "This was a triumph.",
-    "The cake is a lie.",
-    "You will be baked, and then there will be cake.",
-    "I don't blame you.",
-    "Marley was dead to begin with...",
-    "Ruh-Roh Raggy!",
-    "*Clap* [3 Second Pause] *Clap* [3 Second Pause] *Clap*",
-    "Target Lost.",
-    "I 'C' a 'Python', 'Swift'ly get it out of here!!!",
-    "SPAAAAAAAAAACEEEEE",
-    "Shoot the moon kid!",
-    "I'm CrInGiNg!",
-    "Pork. Sausage. Bacon. Ms. Piggy. SCRAPPLE!!!",
-    "Who even is Jon Doe?",
-    "Settings -> General -> About (take a screenshot and send it to me)",
-    "A light bulb was such a good idea it became the symbol for a good idea...",
-    "import tkinter as tk",
-    "from tkinter import tkk",
-    "If only Xcode was available for Windows 7... or iOS... or any OS that's not Mac...",
-    "Why doesn't Python3 support Windows XP?",
-    "If only WSL worked on Windows 7..."
-];
-
-// Function to display a random quote with animation
-function displayRandomQuote() {
-    const quoteElement = document.getElementById('quote');
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    quoteElement.classList.remove('visible');
-    setTimeout(() => {
-        quoteElement.innerText = quotes[randomIndex];
-        quoteElement.classList.add('visible');
-    }, 0); // Delay to allow for the opacity transition
+function createHoverConfetti(color) {
+    return function (event) {
+        if (event.type === 'mouseover') {
+            confetti({
+                particleCount: 5,
+                spread: 50,
+                origin: {
+                    x: event.clientX / window.innerWidth,
+                    y: event.clientY / window.innerHeight
+                },
+                colors: [color]
+            });
+        }
+    };
 }
-
-// Call the function to display a random quote when the page loads
-displayRandomQuote();
