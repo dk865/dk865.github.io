@@ -3,11 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web MIDI Tester</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/jpeg" href="./icon.jpeg">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <title>Pizzazzful Web MIDI Piano Visualizer</title>
     <style>
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @font-face {
+            font-family: 'Carter One';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('./fonts/CarterOne-Regular.woff2') format('woff2');
+        }
+
         body {
             font-family: 'Carter One', sans-serif;
             text-align: center;
@@ -21,41 +32,19 @@
             margin: 0;
             color: #fff;
             overflow-y: scroll;
-            scrollbar-width: none; /* For Firefox */
+            scrollbar-width: none;
         }
 
-        .midi-container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
+        body::-webkit-scrollbar {
+            display: none;
         }
 
-        .midi-header {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-
-        .midi-inputs {
-            margin: 10px 0;
-        }
-
-        .midi-input {
-            font-size: 1.2em;
-            margin: 5px 0;
-            cursor: pointer;
-        }
-
-        .midi-note {
-            font-size: 1.5em;
-            margin-top: 10px;
-            animation: fadeIn 0.5s ease forwards;
+        h1 {
+            font-size: 4em;
+            margin: -10px 0 -10px 0;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeIn 1s ease forwards 0.5s;
         }
 
         @keyframes fadeIn {
@@ -64,81 +53,92 @@
                 transform: translateY(0);
             }
         }
+
+        #piano {
+            display: grid;
+            grid-template-columns: repeat(14, 1fr);
+            gap: 2px;
+            margin-top: 20px;
+        }
+
+        .key {
+            width: 40px;
+            height: 200px;
+            position: relative;
+        }
+
+        .dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            animation: bounce 1s ease-in-out forwards;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-100px);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
-    <img src="./icon.jpeg" alt="Icon" class="icon">
-    <h1>Web MIDI Tester</h1>
-    <div class="midi-container">
-        <div class="midi-header">Available MIDI Inputs</div>
-        <div id="midi-inputs" class="midi-inputs">
-            Loading MIDI devices...
-        </div>
-        <div id="midi-note" class="midi-note"></div>
-    </div>
-
+    <h1>Piano Visualizer</h1>
+    <div id="piano"></div>
     <script>
-        function createConfetti(color) {
-            return function(event) {
-                confetti({
-                    particleCount: 15,
-                    spread: 70,
-                    origin: {
-                        x: event.clientX / window.innerWidth,
-                        y: event.clientY / window.innerHeight
-                    },
-                    colors: [color]
-                });
-            };
+        const NOTE_MAP = [
+            'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'
+        ];
+
+        const piano = document.getElementById('piano');
+
+        for (let i = 0; i < 14; i++) {
+            const key = document.createElement('div');
+            key.classList.add('key');
+            piano.appendChild(key);
         }
 
-        // Fetch MIDI inputs and display them
-        async function setupMIDI() {
-            try {
-                const access = await navigator.requestMIDIAccess();
-                const inputs = access.inputs.values();
-                const inputsContainer = document.getElementById('midi-inputs');
-
-                inputsContainer.innerHTML = '';
-                for (let input of inputs) {
-                    const inputElement = document.createElement('div');
-                    inputElement.className = 'midi-input';
-                    inputElement.innerText = input.name;
-                    inputElement.addEventListener('click', () => connectInput(input));
-                    inputsContainer.appendChild(inputElement);
-                }
-            } catch (error) {
-                document.getElementById('midi-inputs').innerText = 'Failed to access MIDI devices.';
-                console.error('Failed to get MIDI access', error);
+        function onMIDISuccess(midiAccess) {
+            for (const input of midiAccess.inputs.values()) {
+                input.onmidimessage = getMIDIMessage;
             }
         }
 
-        // Connect to a selected MIDI input and listen for messages
-        function connectInput(input) {
-            input.onmidimessage = (message) => {
-                const [command, note, velocity] = message.data;
-                const noteName = getNoteName(note);
-                const noteElement = document.getElementById('midi-note');
+        function getMIDIMessage(midiMessage) {
+            const [command, note, velocity] = midiMessage.data;
 
-                noteElement.style.opacity = 0;
-                setTimeout(() => {
-                    noteElement.innerText = `Note: ${noteName}, Velocity: ${velocity}`;
-                    noteElement.style.opacity = 1;
-                }, 200);
-
-                createConfetti('#00ff00')();  // Trigger confetti on note
-            };
+            if (command === 144) {
+                playNote(note, velocity);
+            }
         }
 
-        // Convert MIDI note number to note name
-        function getNoteName(noteNumber) {
-            const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-            const octave = Math.floor(noteNumber / 12) - 1;
-            const note = noteNumber % 12;
-            return `${noteNames[note]}${octave}`;
+        function playNote(note, velocity) {
+            const keyIndex = (note - 60) % 14;
+            const key = piano.children[keyIndex];
+            if (key) {
+                createDot(key);
+            }
         }
 
-        setupMIDI();
+        function createDot(key) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            dot.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            key.appendChild(dot);
+            setTimeout(() => dot.remove(), 1000);
+        }
+
+        navigator.requestMIDIAccess().then(onMIDISuccess);
     </script>
 </body>
 </html>
