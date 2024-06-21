@@ -8,10 +8,10 @@ Components: main
 Description: This is My Repo. There are various packages, tweaks and programs alike. This repo is pretty empty, but great things are to come!MD5Sum:
  f3fef4211bf8482dc8e1905b32b287c5 2259 Packages
  3549a3705176476f9c7cc76e4896fc5a 1019 Packages.bz2
- 2ddb70bc605e5b18eb2c896a7bfcc194 843 Packages.gz
+ 5d71f0949c020fc98a0b0186c997cb05 843 Packages.gz
  f7196846feb9556ba838431fe632e98c 825 Packages.zst
 SHA256:
  0aaf5c59bcef33429b98b1d95681852d135f76ae5ff6e434c7903c6da41fd93e 2259 Packages
  0dee4312ac214c96e905f5a7a1beeca4d0328d3ab8729c619e575b5033926038 1019 Packages.bz2
- ff7121bf8b81aefa72d2815ec7065fc414b2891ee63366d64b2ab10934c44369 843 Packages.gz
+ 9db7dc1dcbaf34635f55d0c93d65e5bc56861b49199392b91c6817e94b3299bd 843 Packages.gz
  10cb90e413bad5664959fd0588e0ae805a74c812a0a02fe838362167878d73c2 825 Packages.zst
