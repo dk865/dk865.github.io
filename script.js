@@ -1,37 +1,69 @@
-// Platform detection and element visibility
-document.addEventListener('DOMContentLoaded', function () {
-    let currentPlatform = detectPlatform();
-    updateUI(currentPlatform);
-});
+//Welcome to my Lair!
 
-function detectPlatform() {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    if (userAgent.indexOf('Linux') > -1) return 'Linux';
-    if (userAgent.indexOf('Android') > -1) return 'Android';
-    if (userAgent.indexOf('Windows') > -1) return 'Windows';
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) return 'iOS';
-    return 'Unknown';
+//This fetches all of my GitHub Repos and puts them in that Fancy box thing
+async function fetchRepos() {
+    const githubResponse = await fetch('https://api.github.com/users/dk865/repos');
+    const githubRepos = await githubResponse.json();
+    const githubContainer = document.getElementById('github-container');
+    githubContainer.innerHTML = '<div class="repo-label">GitHub Projects</div>';
+
+    githubRepos.forEach(repo => {
+        const repoElement = document.createElement('div');
+        repoElement.className = 'repo';
+        repoElement.innerHTML = `<a href="${repo.html_url}">${repo.name}</a>`;
+        githubContainer.appendChild(repoElement);
+    });
 }
 
-function updateUI(platform) {
-    const repoButtons = document.getElementById('repo-buttons');
-    const linuxRepo = document.getElementById('linux-repo');
-    const packageManagerText = document.getElementById('package-manager-text');
+fetchRepos();
 
-    if (platform === 'Linux') {
-        repoButtons.style.display = 'none';
-        linuxRepo.style.display = 'block';
-        packageManagerText.style.display = 'none';
-    } else if (platform === 'iOS') {
-        repoButtons.style.display = 'flex';
-        linuxRepo.style.display = 'none';
-        packageManagerText.style.display = 'block';
-    } else if (platform === 'Windows' || platform === 'Android') {
-        repoButtons.style.display = 'none';
-        linuxRepo.style.display = 'none';
-        packageManagerText.style.display = 'none';
+// Use Canvas Confetti Script to create confetti when the user has the correct decision to add my repo
+function createConfetti(color) {
+    return function(event) {
+        confetti({
+            particleCount: 15,
+            spread: 70,
+            origin: {
+                x: event.clientX / window.innerWidth,
+                y: event.clientY / window.innerHeight
+            },
+            colors: [color]
+        });
+    };
+}
+
+const buttons = document.querySelectorAll('.button');
+
+// Emits 1 confetti piece when they hover a mouse over it (hmmm... not useful for a mobile device adding my repo...)
+function createHoverConfetti(color) {
+    return function(event) {
+        confetti({
+            particleCount: 1,
+            spread: 20,
+            origin: {
+                x: event.clientX / window.innerWidth,
+                y: event.clientY / window.innerHeight
+            },
+            colors: [color]
+        });
+    };
+}
+
+buttons.forEach(button => {
+    let color;
+    if (button.classList.contains('button-blue')) {
+        color = '#00d9ff';
+    } else if (button.classList.contains('button-purple')) {
+        color = '#b64bfd';
+    } else if (button.classList.contains('button-red')) {
+        color = '#ff9d4e';
+    } else if (button.classList.contains('button-brown-orange')) {
+        color = '#ffc400';
     }
-}
+
+    button.addEventListener('click', createConfetti(color));
+    button.addEventListener('mouseover', createHoverConfetti(color));
+});
 
 // Quotes that will be randomly selected upon loading
 const quotes = [
@@ -74,83 +106,39 @@ const quotes = [
     "Something I need to do > Something I want to do",
     "Just do it",
     "We do what we must, because we can",
-    "For the good of all of us. Except the ones who are dead.",
-    "But there's no sense crying over every mistake, you just keep on trying till you run out of cake.",
-    "You keep on trying till you run out of cake...",
-    "Man, I LOVE this game!",
-    "Thanks to you, I think I've been well-prepared. As far as heroes go, I'd say you're not too bad.",
-    "Yay!",
-    "Hey, remember when you tried to kill me twice?",
-    "Oh, how we laughed and laughed...",
-    "Do you have an alibi?",
-    "That's still unconfirmed. Investigations pending, but..."
+    "For the good of all of us, except the ones who are dead.",
+    "You just keep on trying 'till you run out of cake"
 ];
 
-const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-document.getElementById('quote').innerText = randomQuote;
-
-// Fetch GitHub Repos
-async function fetchRepos() {
-    const githubResponse = await fetch('https://api.github.com/users/dk865/repos');
-    const githubRepos = await githubResponse.json();
-    const githubContainer = document.getElementById('github-container');
-    githubContainer.innerHTML = '<div class="repo-label">GitHub Projects</div>';
-
-    githubRepos.forEach(repo => {
-        const repoElement = document.createElement('div');
-        repoElement.className = 'repo';
-        repoElement.innerHTML = `<a href="${repo.html_url}">${repo.name}</a>`;
-        githubContainer.appendChild(repoElement);
-    });
+// Randomly select the quote
+function displayRandomQuote() {
+    const quoteElement = document.getElementById('quote');
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    quoteElement.classList.remove('visible');
+    setTimeout(() => {
+        quoteElement.innerText = quotes[randomIndex];
+        quoteElement.classList.add('visible');
+    }, 0); //Old logic I never deleted...
 }
 
-fetchRepos();
+displayRandomQuote();
 
-// Create confetti on button click
-function createConfetti(color) {
-    return function (event) {
-        confetti({
-            particleCount: 15,
-            spread: 70,
-            origin: {
-                x: event.clientX / window.innerWidth,
-                y: event.clientY / window.innerHeight
-            },
-            colors: [color]
-        });
-    };
-}
+// Platform detection
+const platform = navigator.platform.toLowerCase();
+const iosButtons = document.getElementById('ios-buttons');
+const altOption = document.getElementById('alt-option');
+const linuxRepo = document.getElementById('linux-repo');
 
-const buttons = document.querySelectorAll('.button');
-
-buttons.forEach(button => {
-    let color;
-    if (button.classList.contains('button-blue')) {
-        color = '#00d9ff';
-    } else if (button.classList.contains('button-purple')) {
-        color = '#b64bfd';
-    } else if (button.classList.contains('button-red')) {
-        color = '#ff9d4e';
-    } else if (button.classList.contains('button-brown-orange')) {
-        color = '#ffc400';
-    }
-
-    button.addEventListener('click', createConfetti(color));
-    button.addEventListener('mouseover', createHoverConfetti(color));
-});
-
-function createHoverConfetti(color) {
-    return function (event) {
-        if (event.type === 'mouseover') {
-            confetti({
-                particleCount: 5,
-                spread: 50,
-                origin: {
-                    x: event.clientX / window.innerWidth,
-                    y: event.clientY / window.innerHeight
-                },
-                colors: [color]
-            });
-        }
-    };
+if (platform.includes('iphone') || platform.includes('g') || platform.includes('ipod')) {
+    iosButtons.style.display = 'flex';
+    altOption.style.display = 'block';
+    linuxRepo.style.display = 'none';
+} else if (platform.includes('ipad')) {
+    iosButtons.style.display = 'none';
+    altOption.style.display = 'none';
+    linuxRepo.style.display = 'block';
+} else {
+    iosButtons.style.display = 'none';
+    altOption.style.display = 'none';
+    linuxRepo.style.display = 'none';
 }
