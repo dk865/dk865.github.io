@@ -80,8 +80,8 @@
 
 <script>
     var midiAccess = null;
-    var midiInputs = null;
-    var midiOutputs = null;
+    var midiInputs = [];
+    var midiOutputs = [];
     var visualizer = document.getElementById('visualizer');
 
     function setup() {
@@ -93,6 +93,7 @@
 
         function success(access) {
             midiAccess = access;
+            midiAccess.onstatechange = onStateChange;
             setupEventHandler();
         }
 
@@ -105,14 +106,20 @@
                     handleMIDIMessage(event.data);
                 };
             });
+        }
 
-            midiAccess.onstatechange = function(event) {
-                if (event.port.type === "input") {
+        function onStateChange(event) {
+            if (event.port.type === "input") {
+                if (event.port.state === "connected" && !midiInputs.includes(event.port)) {
+                    midiInputs.push(event.port);
                     event.port.onmidimessage = function(event) {
                         handleMIDIMessage(event.data);
                     };
+                } else if (event.port.state === "disconnected") {
+                    midiInputs = midiInputs.filter(port => port !== event.port);
                 }
-            };
+            }
+            console.log("MIDI port state change: " + event.port.name + " " + event.port.state);
         }
     }
 
