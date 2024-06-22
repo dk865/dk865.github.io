@@ -130,15 +130,19 @@
     var modal = document.getElementById('modal');
 
     function setup() {
+        console.log("Setting up MIDI access...");
         if (navigator.requestMIDIAccess) {
             navigator.requestMIDIAccess({ sysex: false }).then(success, function() {
+                console.log("MIDI access failed");
                 showModal();
             });
         } else {
+            console.log("Web MIDI API not supported by this browser");
             showModal();
         }
 
         function success(access) {
+            console.log("Successfully accessed MIDI");
             midiAccess = access;
             midiAccess.onstatechange = onStateChange;
             setupEventHandler();
@@ -148,7 +152,11 @@
             midiInputs = Array.from(midiAccess.inputs.values());
             midiOutputs = Array.from(midiAccess.outputs.values());
 
+            console.log("MIDI Inputs:", midiInputs);
+            console.log("MIDI Outputs:", midiOutputs);
+
             if (midiInputs.length === 0) {
+                console.log("No MIDI inputs detected");
                 showModal();
             }
 
@@ -156,10 +164,12 @@
                 input.onmidimessage = function(event) {
                     handleMIDIMessage(event.data);
                 };
+                console.log("Connected to input:", input.name);
             });
         }
 
         function onStateChange(event) {
+            console.log("MIDI port state change:", event.port.name, event.port.state);
             if (event.port.type === "input") {
                 if (event.port.state === "connected" && !midiInputs.includes(event.port)) {
                     midiInputs.push(event.port);
@@ -167,9 +177,11 @@
                         handleMIDIMessage(event.data);
                     };
                     hideModal();
+                    console.log("Input connected:", event.port.name);
                 } else if (event.port.state === "disconnected") {
                     midiInputs = midiInputs.filter(port => port !== event.port);
                     if (midiInputs.length === 0) {
+                        console.log("All MIDI inputs disconnected");
                         showModal();
                     }
                 }
@@ -178,6 +190,7 @@
     }
 
     function handleMIDIMessage(data) {
+        console.log("MIDI message received:", data);
         if (data[0] === 0x90 && data[2] > 0) { // Note on
             createNote();
             createConfetti();
@@ -185,6 +198,7 @@
     }
 
     function createNote() {
+        console.log("Creating note visual");
         var note = document.createElement('div');
         note.className = 'note';
         note.style.left = (Math.random() * 80) + 'vw';
@@ -198,6 +212,7 @@
     }
 
     function createConfetti() {
+        console.log("Creating confetti");
         for (let i = 0; i < 20; i++) {
             let confetti = document.createElement('div');
             confetti.className = 'confetti';
