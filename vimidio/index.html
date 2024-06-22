@@ -75,34 +75,67 @@
         100% { transform: translateY(100vh) rotate(360deg); }
     }
 
-    .log {
-        width: 80%;
-        height: 20%;
-        background: #eeeeee;
-        border: 2px solid #888888;
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 1.5em;
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background: #333;
+        padding: 20px;
         border-radius: 10px;
-        padding: 10px;
-        overflow: auto;
-        color: #000;
+        text-align: center;
+    }
+
+    .button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 1em;
+        color: white;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background-color: #0056b3;
     }
 </style>
 </head>
 <body>
 <div id="visualizer" class="visualizer"></div>
-<pre id="log" class="log"></pre>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <p>Your browser supports MIDI, but no keyboards are detected… Please unplug and replug it.</p>
+        <button class="button" onclick="hideModal()">OK</button>
+    </div>
+</div>
 
 <script>
     var midiAccess = null;
     var midiInputs = [];
     var midiOutputs = [];
     var visualizer = document.getElementById('visualizer');
-    var logElement = document.getElementById('log');
+    var modal = document.getElementById('modal');
 
     function setup() {
         if (navigator.requestMIDIAccess) {
-            navigator.requestMIDIAccess({ sysex: false }).then(success, function() { log("requestMIDIAccess() failed."); });
+            navigator.requestMIDIAccess({ sysex: false }).then(success, function() {
+                showModal();
+            });
         } else {
-            log("Web MIDI API is not available on your browser.");
+            showModal();
         }
 
         function success(access) {
@@ -115,11 +148,14 @@
             midiInputs = Array.from(midiAccess.inputs.values());
             midiOutputs = Array.from(midiAccess.outputs.values());
 
+            if (midiInputs.length === 0) {
+                showModal();
+            }
+
             midiInputs.forEach(input => {
                 input.onmidimessage = function(event) {
                     handleMIDIMessage(event.data);
                 };
-                log(`Connected to input: ${input.name}`);
             });
         }
 
@@ -130,13 +166,14 @@
                     event.port.onmidimessage = function(event) {
                         handleMIDIMessage(event.data);
                     };
-                    log(`Connected to input: ${event.port.name}`);
+                    hideModal();
                 } else if (event.port.state === "disconnected") {
                     midiInputs = midiInputs.filter(port => port !== event.port);
-                    log(`Disconnected from input: ${event.port.name}`);
+                    if (midiInputs.length === 0) {
+                        showModal();
+                    }
                 }
             }
-            log("MIDI port state change: " + event.port.name + " " + event.port.state);
         }
     }
 
@@ -145,7 +182,6 @@
             createNote();
             createConfetti();
         }
-        log(`MIDI message received: ${Array.from(data).join(", ")}`);
     }
 
     function createNote() {
@@ -177,9 +213,12 @@
         }
     }
 
-    function log(message) {
-        logElement.innerHTML += message + "\n";
-        logElement.scrollTop = logElement.scrollHeight;
+    function showModal() {
+        modal.style.display = 'flex';
+    }
+
+    function hideModal() {
+        modal.style.display = 'none';
     }
 
     window.onload = function() {
