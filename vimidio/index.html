@@ -27,6 +27,7 @@
         animation: gradient 15s ease infinite;
         min-height: 100vh;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         margin: 0;
@@ -37,10 +38,11 @@
     .visualizer {
         position: relative;
         width: 80%;
-        height: 80%;
+        height: 60%;
         border: 2px solid #ffffff;
         border-radius: 10px;
         overflow: hidden;
+        margin-bottom: 20px;
     }
 
     .note {
@@ -73,22 +75,33 @@
         100% { transform: translateY(100vh) rotate(360deg); }
     }
 
+    .log {
+        width: 80%;
+        height: 20%;
+        background: #eeeeee;
+        border: 2px solid #888888;
+        border-radius: 10px;
+        padding: 10px;
+        overflow: auto;
+    }
 </style>
 </head>
 <body>
 <div id="visualizer" class="visualizer"></div>
+<pre id="log" class="log"></pre>
 
 <script>
     var midiAccess = null;
     var midiInputs = [];
     var midiOutputs = [];
     var visualizer = document.getElementById('visualizer');
+    var logElement = document.getElementById('log');
 
     function setup() {
         if (navigator.requestMIDIAccess) {
-            navigator.requestMIDIAccess({ sysex: false }).then(success, function() { alert("requestMIDIAccess() failed."); });
+            navigator.requestMIDIAccess({ sysex: false }).then(success, function() { log("requestMIDIAccess() failed."); });
         } else {
-            alert("Web MIDI API is not available on your browser.");
+            log("Web MIDI API is not available on your browser.");
         }
 
         function success(access) {
@@ -105,6 +118,7 @@
                 input.onmidimessage = function(event) {
                     handleMIDIMessage(event.data);
                 };
+                log(`Connected to input: ${input.name}`);
             });
         }
 
@@ -115,11 +129,13 @@
                     event.port.onmidimessage = function(event) {
                         handleMIDIMessage(event.data);
                     };
+                    log(`Connected to input: ${event.port.name}`);
                 } else if (event.port.state === "disconnected") {
                     midiInputs = midiInputs.filter(port => port !== event.port);
+                    log(`Disconnected from input: ${event.port.name}`);
                 }
             }
-            console.log("MIDI port state change: " + event.port.name + " " + event.port.state);
+            log("MIDI port state change: " + event.port.name + " " + event.port.state);
         }
     }
 
@@ -128,6 +144,7 @@
             createNote();
             createConfetti();
         }
+        log(`MIDI message received: ${data}`);
     }
 
     function createNote() {
@@ -152,6 +169,11 @@
                 visualizer.removeChild(confetti);
             }, 2000);
         }
+    }
+
+    function log(message) {
+        logElement.innerHTML += message + "\n";
+        logElement.scrollTop = logElement.scrollHeight;
     }
 
     window.onload = function() {
