@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDI Visualizer</title>
+    <style>
+        @font-face {
+            font-family: 'Carter One';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('./fonts/CarterOne-Regular.woff2') format('woff2');
+        }
+
+        body {
+            font-family: 'Carter One', sans-serif;
+            text-align: center;
+            background-color: #001c2c;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0;
+            color: #fff;
+            overflow-y: scroll;
+            scrollbar-width: none; /* For Firefox */
+        }
+
+        body::-webkit-scrollbar {
+            display: none; /* For Chrome, Safari, and Opera */
+        }
+
+        #hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin: 20px;
+        }
+
+        #hamburger-menu div {
+            width: 35px;
+            height: 5px;
+            background-color: white;
+            transition: transform 0.3s ease;
+        }
+
+        #hamburger-menu.open div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        #hamburger-menu.open div:nth-child(2) {
+            opacity: 0;
+        }
+
+        #hamburger-menu.open div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        h1 {
+            font-size: 4em;
+            margin: 20px 0;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            font-size: 1.5em;
+            padding: 15px 30px;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .button-blue {
+            background: linear-gradient(45deg, #2582fc 0%, #00d9ff 100%);
+        }
+
+        .button-blue:hover {
+            transform: scale(1.05);
+            background-color: #009eb3;
+            box-shadow: 0 0 50px rgba(0, 204, 255, 0.7);
+        }
+
+        .button-purple {
+            background: linear-gradient(45deg, #8400ff 0%, #b64bfd 100%);
+        }
+
+        .button-purple:hover {
+            transform: scale(1.05);
+            background-color: #563d7c;
+            box-shadow: 0 0 50px rgba(111, 66, 193, 0.7);
+        }
+
+        #visualizer {
+            width: 80%;
+            height: 400px;
+            background-color: black;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hamburger Menu -->
+    <div id="hamburger-menu" class="button-container">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <h1>MIDI Visualizer</h1>
+    <div id="visualizer"></div>
+    <div class="button-container">
+        <button class="button button-blue" id="play-button">Play</button>
+        <button class="button button-purple" id="stop-button">Stop</button>
+    </div>
+    <script src="libs/jquery.js"></script>
+    <script src="libs/bootstrap/bootstrap.min.js"></script>
+    <script src="libs/midi/MIDI/MIDI.js"></script>
+    <script src="libs/midi/inc/SoundManager2/script/soundmanager2.js"></script>
+    <script src="libs/webgl/three.min.js"></script>
+    <script src="libs/webgl/TrackballControls.js"></script>
+    <script>
+        // Initialize soundmanager2
+        soundManager.setup({
+            url: 'libs/midi/inc/SoundManager2/swf/',
+            onready: function() {
+                console.log('SoundManager ready');
+            },
+            ontimeout: function() {
+                console.log('SoundManager failed to start');
+            }
+        });
+
+        // Hamburger menu toggle
+        document.getElementById('hamburger-menu').addEventListener('click', function() {
+            this.classList.toggle('open');
+            // Add functionality to toggle menu visibility here
+        });
+
+        // MIDI-in and MIDI-out setup
+        if (navigator.requestMIDIAccess) {
+            navigator.requestMIDIAccess()
+                .then(onMIDISuccess, onMIDIFailure);
+        } else {
+            console.warn('WebMIDI is not supported in this browser.');
+        }
+
+        function onMIDISuccess(midiAccess) {
+            for (var input of midiAccess.inputs.values()) {
+                input.onmidimessage = getMIDIMessage;
+            }
+        }
+
+        function onMIDIFailure() {
+            console.warn('Could not access your MIDI devices.');
+        }
+
+        function getMIDIMessage(midiMessage) {
+            console.log('MIDI message received', midiMessage.data);
+            // Handle MIDI message here
+        }
+
+        const playButton = document.getElementById('play-button');
+        const stopButton = document.getElementById('stop-button');
+
+        playButton.addEventListener('click', () => {
+            // Play MIDI file with audio
+        });
+
+        stopButton.addEventListener('click', () => {
+            // Stop MIDI file playback
+        });
+
+        // Visualizer setup
+        const visualizer = document.getElementById('visualizer');
+        // Initialize your visualizer here
+
+        // Initialize WebGL renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, visualizer.clientWidth / visualizer.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(visualizer.clientWidth, visualizer.clientHeight);
+        visualizer.appendChild(renderer.domElement);
+
+        const controls = new THREE.TrackballControls(camera, renderer.domElement);
+
+        camera.position.z = 5;
+
+        const animate = function () {
+            requestAnimationFrame(animate);
+
+            controls.update();
+
+            renderer.render(scene, camera);
+        };
+
+        animate();
+
+        function onWindowResize() {
+            camera.aspect = visualizer.clientWidth / visualizer.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(visualizer.clientWidth, visualizer.clientHeight);
+        }
+
+        window.addEventListener('resize', onWindowResize, false);
+    </script>
+</body>
+</html>
