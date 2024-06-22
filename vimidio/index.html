@@ -1,219 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIDI Visualizer</title>
-    <style>
-        @font-face {
-            font-family: 'Carter One';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url('./fonts/CarterOne-Regular.woff2') format('woff2');
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vimidio - MIDI Visualizer</title>
+<style>
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
 
-        body {
-            font-family: 'Carter One', sans-serif;
-            text-align: center;
-            background-color: #001c2c;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            margin: 0;
-            color: #fff;
-            overflow-y: scroll;
-            scrollbar-width: none; /* For Firefox */
-        }
+    @font-face {
+        font-family: 'Carter One';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('./fonts/CarterOne-Regular.woff2') format('woff2');
+    }
 
-        body::-webkit-scrollbar {
-            display: none; /* For Chrome, Safari, and Opera */
-        }
+    body {
+        font-family: 'Carter One', sans-serif;
+        text-align: center;
+        background: linear-gradient(45deg, #001c2c, #002d4c, #004080);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        color: #fff;
+        overflow: hidden;
+    }
 
-        #hamburger-menu {
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            margin: 20px;
-        }
+    .visualizer {
+        position: relative;
+        width: 80%;
+        height: 80%;
+        border: 2px solid #ffffff;
+        border-radius: 10px;
+        overflow: hidden;
+    }
 
-        #hamburger-menu div {
-            width: 35px;
-            height: 5px;
-            background-color: white;
-            transition: transform 0.3s ease;
-        }
+    .note {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: yellow;
+        border-radius: 50%;
+        animation: fly 1s linear forwards;
+    }
 
-        #hamburger-menu.open div:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        #hamburger-menu.open div:nth-child(2) {
+    @keyframes fly {
+        to {
+            transform: translateY(-100vh) scale(0.5);
             opacity: 0;
         }
+    }
 
-        #hamburger-menu.open div:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
+    .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #ff0;
+        border-radius: 50%;
+        animation: confettiFall 2s linear infinite;
+    }
 
-        h1 {
-            font-size: 4em;
-            margin: 20px 0;
-        }
+    @keyframes confettiFall {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(100vh) rotate(360deg); }
+    }
 
-        .button-container {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        .button {
-            font-size: 1.5em;
-            padding: 15px 30px;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .button-blue {
-            background: linear-gradient(45deg, #2582fc 0%, #00d9ff 100%);
-        }
-
-        .button-blue:hover {
-            transform: scale(1.05);
-            background-color: #009eb3;
-            box-shadow: 0 0 50px rgba(0, 204, 255, 0.7);
-        }
-
-        .button-purple {
-            background: linear-gradient(45deg, #8400ff 0%, #b64bfd 100%);
-        }
-
-        .button-purple:hover {
-            transform: scale(1.05);
-            background-color: #563d7c;
-            box-shadow: 0 0 50px rgba(111, 66, 193, 0.7);
-        }
-
-        #visualizer {
-            width: 80%;
-            height: 400px;
-            background-color: black;
-            margin-bottom: 20px;
-        }
-    </style>
+</style>
 </head>
 <body>
-    <!-- Hamburger Menu -->
-    <div id="hamburger-menu" class="button-container">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-    <h1>MIDI Visualizer</h1>
-    <div id="visualizer"></div>
-    <div class="button-container">
-        <button class="button button-blue" id="play-button">Play</button>
-        <button class="button button-purple" id="stop-button">Stop</button>
-    </div>
-    <script src="libs/jquery.js"></script>
-    <script src="libs/bootstrap/bootstrap.min.js"></script>
-    <script src="libs/midi/MIDI/MIDI.js"></script>
-    <script src="libs/midi/inc/SoundManager2/script/soundmanager2.js"></script>
-    <script src="libs/webgl/three.min.js"></script>
-    <script src="libs/webgl/TrackballControls.js"></script>
-    <script>
-        // Initialize soundmanager2
-        soundManager.setup({
-            url: 'libs/midi/inc/SoundManager2/swf/',
-            onready: function() {
-                console.log('SoundManager ready');
-            },
-            ontimeout: function() {
-                console.log('SoundManager failed to start');
-            }
-        });
+<div id="visualizer" class="visualizer"></div>
 
-        // Hamburger menu toggle
-        document.getElementById('hamburger-menu').addEventListener('click', function() {
-            this.classList.toggle('open');
-            // Add functionality to toggle menu visibility here
-        });
+<script>
+    var midiAccess = null;
+    var midiInputs = null;
+    var midiOutputs = null;
+    var visualizer = document.getElementById('visualizer');
 
-        // MIDI-in and MIDI-out setup
+    function setup() {
         if (navigator.requestMIDIAccess) {
-            navigator.requestMIDIAccess()
-                .then(onMIDISuccess, onMIDIFailure);
+            navigator.requestMIDIAccess({ sysex: false }).then(success, function() { alert("requestMIDIAccess() failed."); });
         } else {
-            console.warn('WebMIDI is not supported in this browser.');
+            alert("Web MIDI API is not available on your browser.");
         }
 
-        function onMIDISuccess(midiAccess) {
-            for (var input of midiAccess.inputs.values()) {
-                input.onmidimessage = getMIDIMessage;
-            }
+        function success(access) {
+            midiAccess = access;
+            setupEventHandler();
         }
 
-        function onMIDIFailure() {
-            console.warn('Could not access your MIDI devices.');
+        function setupEventHandler() {
+            midiInputs = Array.from(midiAccess.inputs.values());
+            midiOutputs = Array.from(midiAccess.outputs.values());
+
+            midiInputs.forEach(input => {
+                input.onmidimessage = function(event) {
+                    handleMIDIMessage(event.data);
+                };
+            });
+
+            midiAccess.onstatechange = function(event) {
+                if (event.port.type === "input") {
+                    event.port.onmidimessage = function(event) {
+                        handleMIDIMessage(event.data);
+                    };
+                }
+            };
         }
+    }
 
-        function getMIDIMessage(midiMessage) {
-            console.log('MIDI message received', midiMessage.data);
-            // Handle MIDI message here
+    function handleMIDIMessage(data) {
+        if (data[0] === 0x90 && data[2] > 0) { // Note on
+            createNote();
+            createConfetti();
         }
+    }
 
-        const playButton = document.getElementById('play-button');
-        const stopButton = document.getElementById('stop-button');
+    function createNote() {
+        var note = document.createElement('div');
+        note.className = 'note';
+        note.style.left = (Math.random() * 100) + 'vw';
+        note.style.bottom = '0';
+        visualizer.appendChild(note);
+        setTimeout(() => {
+            visualizer.removeChild(note);
+        }, 1000);
+    }
 
-        playButton.addEventListener('click', () => {
-            // Play MIDI file with audio
-        });
-
-        stopButton.addEventListener('click', () => {
-            // Stop MIDI file playback
-        });
-
-        // Visualizer setup
-        const visualizer = document.getElementById('visualizer');
-        // Initialize your visualizer here
-
-        // Initialize WebGL renderer
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, visualizer.clientWidth / visualizer.clientHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(visualizer.clientWidth, visualizer.clientHeight);
-        visualizer.appendChild(renderer.domElement);
-
-        const controls = new THREE.TrackballControls(camera, renderer.domElement);
-
-        camera.position.z = 5;
-
-        const animate = function () {
-            requestAnimationFrame(animate);
-
-            controls.update();
-
-            renderer.render(scene, camera);
-        };
-
-        animate();
-
-        function onWindowResize() {
-            camera.aspect = visualizer.clientWidth / visualizer.clientHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(visualizer.clientWidth, visualizer.clientHeight);
+    function createConfetti() {
+        for (let i = 0; i < 20; i++) {
+            let confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = (Math.random() * 100) + 'vw';
+            confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            visualizer.appendChild(confetti);
+            setTimeout(() => {
+                visualizer.removeChild(confetti);
+            }, 2000);
         }
+    }
 
-        window.addEventListener('resize', onWindowResize, false);
-    </script>
+    window.onload = function() {
+        setup();
+    }
+</script>
 </body>
 </html>
