@@ -129,11 +129,11 @@ const iosButtons = document.getElementById('ios-buttons');
 const altOption = document.getElementById('alt-option');
 const linuxRepo = document.getElementById('linux-repo');
 
-if (platform.includes('iphone') || platform.includes('g') || platform.includes('ipod')) {
+if (platform.includes('iphone') || platform.includes('ipad') || platform.includes('ipod')) {
     iosButtons.style.display = 'flex';
     altOption.style.display = 'block';
     linuxRepo.style.display = 'none';
-} else if (platform.includes('ipad')) {
+} else if (platform.includes('linux')) {
     iosButtons.style.display = 'none';
     altOption.style.display = 'none';
     linuxRepo.style.display = 'block';
