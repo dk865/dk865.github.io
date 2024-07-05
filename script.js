@@ -142,3 +142,10 @@ if (platform.includes('iphone') || platform.includes('ipad') || platform.include
     altOption.style.display = 'none';
     linuxRepo.style.display = 'none';
 }
+
+function trackSignup(leadType, eventId) {
+    pintrk('track', 'signup', {
+        event_id: eventId,
+        lead_type: leadType
+    });
+}
