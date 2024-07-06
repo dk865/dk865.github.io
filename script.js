@@ -107,7 +107,10 @@ const quotes = [
     "Just do it",
     "We do what we must, because we can",
     "For the good of all of us, except the ones who are dead.",
-    "You just keep on trying 'till you run out of cake"
+    "You just keep on trying 'till you run out of cake",
+    "'moon-buggy'",
+    "Starting Windows",
+    "King Bob!"
 ];
 
 // Randomly select the quote
