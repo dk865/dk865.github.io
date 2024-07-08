@@ -110,6 +110,16 @@ const quotes = [
     "You just keep on trying 'till you run out of cake",
     "'moon-buggy'",
     "Starting Windows",
+    "C.A.M.P.F.I.R.E.S.O.N.G. SONG",
+    "You're the MORON designed to make ME an IDIOT!!!",
+    "The design is very human",
+    "dk865.github.io/blog/quotes",
+    "Oh, it's you. It's been a LoOoOng time.",
+    "How heave you bean? I've been really busy being dead after, you know, you MURDERED ME?",
+    "Well I think we can pit our differences behind us. For science. You monster.",
+    "sudo heck",
+    "Minesweeper (:",
+    "git add . && git commit -m 'Initial Commit' && git push",
     "King Bob!"
 ];
 
