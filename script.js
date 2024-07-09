@@ -120,7 +120,9 @@ const quotes = [
     "sudo heck",
     "Minesweeper (:",
     "git add . && git commit -m 'Initial Commit' && git push",
-    "King Bob!"
+    "King Bob!",
+    "Woah, VAMPERINA",
+    "Am I a Man, or am I a muppet? (am I a muppet?"
 ];
 
 // Randomly select the quote
