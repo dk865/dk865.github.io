@@ -25,7 +25,7 @@ body {
   margin: 0;
   color: #fff;
   overflow-y: scroll;
-  scrollbar-width: none; /* For Firefox */
+  /* scrollbar-width: none; I like my scrollbar */
 }
 
 .carter-one-regular {
@@ -34,9 +34,9 @@ body {
   font-style: normal;
 }
 
-body::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Opera */
-}
+/* body::-webkit-scrollbar {
+    display: none; Scrollbar is nice
+} */
 
 h1 {
     font-size: 4em;
