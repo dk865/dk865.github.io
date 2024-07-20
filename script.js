@@ -115,14 +115,26 @@ const quotes = [
     "The design is very human",
     "dk865.github.io/blog/quotes",
     "Oh, it's you. It's been a LoOoOng time.",
-    "How heave you bean? I've been really busy being dead after, you know, you MURDERED ME?",
-    "Well I think we can pit our differences behind us. For science. You monster.",
+    "I've been really busy being dead after, you know, you MURDERED ME?",
+    "Well I think we can put our differences behind us. For science. You monster.",
     "sudo heck",
     "Minesweeper (:",
     "git add . && git commit -m 'Initial Commit' && git push",
     "King Bob!",
-    "Woah, VAMPERINA",
-    "Am I a Man, or am I a muppet? (am I a muppet?"
+    "Am I a Man, or am I a muppet?",
+    "I reflect on my reflection",
+    "If I'm a muppet, then I'm a very manly muppet.",
+    "It's time for me to decide",
+    "Oh how we laughed and laughed (except I wasn't laughing)",
+    "It's always such a pleasure",
+    "Suspensful Music Plays",
+    "Everything I need you've got.",
+    "There's honey in the rock",
+    "Water in the Stone",
+    "Can you elaborate on that?",
+    "Ask, and it will be given to you",
+    "Like the wind you guide",
+    "Where is your manager?!?"
 ];
 
 // Randomly select the quote
