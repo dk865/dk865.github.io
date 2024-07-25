@@ -1,71 +1,27 @@
-//Welcome to my Lair!
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('menu-btn');
+    const sidebar = document.querySelector('.sidebar');
+    const dropdowns = document.querySelectorAll('.dropdown');
+    const quoteElement = document.getElementById('quote');
 
-//This fetches all of my GitHub Repos and puts them in that Fancy box thing
-async function fetchRepos() {
-    const githubResponse = await fetch('https://api.github.com/users/dk865/repos');
-    const githubRepos = await githubResponse.json();
-    const githubContainer = document.getElementById('github-container');
-    githubContainer.innerHTML = '<div class="repo-label">GitHub Projects</div>';
-
-    githubRepos.forEach(repo => {
-        const repoElement = document.createElement('div');
-        repoElement.className = 'repo';
-        repoElement.innerHTML = `<a href="${repo.html_url}">${repo.name}</a>`;
-        githubContainer.appendChild(repoElement);
+    // Toggle sidebar visibility
+    menuBtn.addEventListener('click', () => {
+        const isActive = sidebar.classList.toggle('active');
+        menuBtn.classList.toggle('active', isActive);
     });
-}
 
-fetchRepos();
+    // Toggle dropdown content visibility
+    dropdowns.forEach(dropdown => {
+        const dropdownIcon = dropdown.querySelector('.dropdown-icon');
+        const dropdownContent = dropdown.querySelector('.dropdown-content');
 
-// Use Canvas Confetti Script to create confetti when the user has the correct decision to add my repo
-function createConfetti(color) {
-    return function(event) {
-        confetti({
-            particleCount: 15,
-            spread: 70,
-            origin: {
-                x: event.clientX / window.innerWidth,
-                y: event.clientY / window.innerHeight
-            },
-            colors: [color]
+        dropdownIcon.addEventListener('click', () => {
+            const isOpen = dropdownContent.style.display === 'flex';
+            dropdownContent.style.display = isOpen ? 'none' : 'flex';
         });
-    };
-}
+    });
 
-const buttons = document.querySelectorAll('.button');
-
-// Emits 1 confetti piece when they hover a mouse over it (hmmm... not useful for a mobile device adding my repo...)
-function createHoverConfetti(color) {
-    return function(event) {
-        confetti({
-            particleCount: 1,
-            spread: 20,
-            origin: {
-                x: event.clientX / window.innerWidth,
-                y: event.clientY / window.innerHeight
-            },
-            colors: [color]
-        });
-    };
-}
-
-buttons.forEach(button => {
-    let color;
-    if (button.classList.contains('button-blue')) {
-        color = '#00d9ff';
-    } else if (button.classList.contains('button-purple')) {
-        color = '#b64bfd';
-    } else if (button.classList.contains('button-red')) {
-        color = '#ff9d4e';
-    } else if (button.classList.contains('button-brown-orange')) {
-        color = '#ffc400';
-    }
-
-    button.addEventListener('click', createConfetti(color));
-    button.addEventListener('mouseover', createHoverConfetti(color));
-});
-
-// Quotes that will be randomly selected upon loading
+    // Quotes array and function to set random quote
 const quotes = [
     "[Announcer] Caroline Deleted.",
     "Womp Womp",
@@ -136,43 +92,32 @@ const quotes = [
     "Like the wind you guide",
     "Where is your manager?!?"
 ];
+    function setRandomQuote() {
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        quoteElement.textContent = randomQuote;
+    }
 
-// Randomly select the quote
-function displayRandomQuote() {
-    const quoteElement = document.getElementById('quote');
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    quoteElement.classList.remove('visible');
-    setTimeout(() => {
-        quoteElement.innerText = quotes[randomIndex];
-        quoteElement.classList.add('visible');
-    }, 0); //Old logic I never deleted...
-}
+    setRandomQuote(); // Set initial random quote
 
-displayRandomQuote();
+    // Fetch GitHub repositories
+    async function fetchGitHubRepos() {
+        try {
+            const response = await fetch('https://api.github.com/users/dk865/repos');
+            const repos = await response.json();
+            const container = document.getElementById('github-container');
+            container.innerHTML = '<div class="repo-label">GitHub Projects</div>';
+            
+            repos.forEach(repo => {
+                const repoElement = document.createElement('div');
+                repoElement.className = 'repo';
+                repoElement.innerHTML = `<a href="${repo.html_url}" target="_blank">${repo.name}</a>`;
+                container.appendChild(repoElement);
+            });
+        } catch (error) {
+            console.error('Error fetching GitHub repositories:', error);
+            document.getElementById('github-container').innerHTML = 'Error loading repositories.';
+        }
+    }
 
-// Platform detection
-const platform = navigator.platform.toLowerCase();
-const iosButtons = document.getElementById('ios-buttons');
-const altOption = document.getElementById('alt-option');
-const linuxRepo = document.getElementById('linux-repo');
-
-if (platform.includes('iphone') || platform.includes('ipad') || platform.includes('ipod')) {
-    iosButtons.style.display = 'flex';
-    altOption.style.display = 'block';
-    linuxRepo.style.display = 'none';
-} else if (platform.includes('linux')) {
-    iosButtons.style.display = 'none';
-    altOption.style.display = 'none';
-    linuxRepo.style.display = 'block';
-} else {
-    iosButtons.style.display = 'none';
-    altOption.style.display = 'none';
-    linuxRepo.style.display = 'none';
-}
-
-function trackSignup(leadType, eventId) {
-    pintrk('track', 'signup', {
-        event_id: eventId,
-        lead_type: leadType
-    });
-}
+    fetchGitHubRepos();
+});
