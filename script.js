@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const dropdowns = document.querySelectorAll('.dropdown');
     const quoteElement = document.getElementById('quote');
 
-    // Toggle sidebar visibility
+    //Sidebar Toggleing
     menuBtn.addEventListener('click', () => {
         const isActive = sidebar.classList.toggle('active');
         menuBtn.classList.toggle('active', isActive);
     });
 
-    // Toggle dropdown content visibility
+    // Toggeling the Visibility
     dropdowns.forEach(dropdown => {
         const dropdownIcon = dropdown.querySelector('.dropdown-icon');
         const dropdownContent = dropdown.querySelector('.dropdown-content');
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Quotes array and function to set random quote
+    // Toggeling is a word, of course
 const quotes = [
     "[Announcer] Caroline Deleted.",
     "Womp Womp",
@@ -90,14 +90,19 @@ const quotes = [
     "Can you elaborate on that?",
     "Ask, and it will be given to you",
     "Like the wind you guide",
-    "Where is your manager?!?"
+    "Where is your manager?!?",
+    "Everybody be quiet now!",
+    "Hey! Enough!",
+    "Heyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+    "At the stopsign, turn left.",
+    "Not so fast."
 ];
     function setRandomQuote() {
         const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
         quoteElement.textContent = randomQuote;
     }
 
-    setRandomQuote(); // Set initial random quote
+    setRandomQuote(); // Quote!
 
     // Fetch GitHub repositories
     async function fetchGitHubRepos() {
