@@ -8,15 +8,6 @@
     to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes spinIn {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-@keyframes spinOut {
-    from { transform: rotate(360deg); }
-    to { transform: rotate(0deg); }
-}
 
 @font-face {
     font-family: 'Carter One';
@@ -29,7 +20,7 @@
 body {
     font-family: 'Carter One', sans-serif;
     text-align: center;
-    background-color: #615e5f;
+    background-color: #000000;
     background-size: 400% 400%;
     min-height: 100vh;
     display: flex;
