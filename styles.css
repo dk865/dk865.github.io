@@ -32,6 +32,14 @@ body {
     overflow-y: scroll;
 }
 
+quoted {
+    text-align: right;
+    font-size: 0.2em;
+    opacity: 0.3;
+    transform: translateY(-20px);
+    animation: fadeIn 1s ease forwards 0.5s;
+}
+
 h1 {
     font-size: 4em;
     margin: -10px 0 -10px 0;
