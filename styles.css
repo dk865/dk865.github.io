@@ -1,13 +1,24 @@
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
 
 @keyframes slideIn {
-    from { opacity: 0; transform: translateX(-20px); }
-    to { opacity: 1; transform: translateX(0); }
+    from { 
+        opacity: 0; 
+        transform: translateX(-20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
+    }
 }
-
 
 @font-face {
     font-family: 'Carter One';
@@ -17,26 +28,54 @@
     src: url('./fonts/CarterOne-Regular.woff2') format('woff2');
 }
 
+html, body {
+    height: 100%; /* Ensure the html and body take up the full viewport height */
+    margin: 0; /* Remove default margins */
+}
+
 body {
     font-family: 'Carter One', sans-serif;
     text-align: center;
-    background-color: #002b36;
-    background-size: 400% 400%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0;
     color: #fff;
     overflow-y: scroll;
     background-image: url('./background.png');
     background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
+    background-position: bottom center;
     background-repeat: no-repeat;
-
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0 15px;
+    box-sizing: border-box;
 }
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb( 0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #094d3e;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #28a58a;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgb( 0, 0, 0, 0);
+}
+
+
+
 
 
 .icon {
