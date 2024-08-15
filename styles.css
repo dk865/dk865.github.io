@@ -30,6 +30,12 @@ body {
     margin: 0;
     color: #fff;
     overflow-y: scroll;
+    background-image: url('./background.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+
 }
 
 
