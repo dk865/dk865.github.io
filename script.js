@@ -71,7 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
         "Where is your manager?!?",
         "Everybody be quiet now!",
         "At the stop sign, turn left.",
-        "Not so fast."
+        "Not so fast.",
+        "[Caroline:] Goodbye Caroline",
+        "When Life gives you Lemons, don't make lemonade. Make life take it's lemons back. say, 'I don't want your **** Lemons!",
+        "Nugget",
+        "I like to eat Apples and Bananas",
+        "*Sigh*"
     ];
     function setRandomQuote() {
         const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
