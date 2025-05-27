@@ -1,0 +1,12 @@
+{
+    "welcome": {
+        "title": "Welcome!",
+        "description": "Welcome to the server!",
+        "color": "0x00ff00"
+    },
+    "rules": {
+        "title": "Server Rules",
+        "description": "1. Be respectful\n2. No spam\n3. Follow Discord TOS",
+        "color": "0xff0000"
+    }
+}
